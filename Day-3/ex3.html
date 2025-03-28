@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ex3</title>
+    </head>
+    <body>
+        <form method="post" action="https://api-gateway.fullstack.edu.vn/action_page.php">
+            <table cellpadding="5">
+                <!-- username-->
+                <tr>
+                    <td><label for="username">Username:</label></td>
+                    <td><input type="text" name="username" id="username" /></td>
+                </tr>
+
+                <!-- password -->
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input type="password" name="password" id="password" /></td>
+                </tr>
+
+                <!-- city -->
+                <tr>
+                    <td><label for="city">City of Employment:</label></td>
+                    <td><input type="text" name="city" id="city" /></td>
+                </tr>
+
+                <!-- server -->
+                <tr>
+                    <td><label for="server">Web server:</label></td>
+                    <td>
+                        <select name="server" id="server">
+                            <option value="">--- Choose a server ---</option>
+                            <option value="server1">Server 1</option>
+                            <option value="server2">Server 2</option>
+                            <option value="server3">Server 3</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- role -->
+                <tr>
+                    <td>Please specify your role:</td>
+                    <td>
+                        <div>
+                            <input type="radio" name="role" id="roleAdmin" value="admin" />
+                            <label for="roleAdmin">Admin</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="role" id="roleEngineer" value="engineer" />
+                            <label for="roleEngineer">Engineer</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="role" id="roleManager" value="manager" />
+                            <label for="roleManager">Manager</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="role" id="roleGuest" value="guest" />
+                            <label for="roleGuest">Guest</label>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- signOn -->
+                <tr>
+                    <td>Single Sign-on the following:</td>
+                    <td>
+                        <div>
+                            <input type="checkbox" name="signOn[]" id="signOnMail" value="mail" />
+                            <label for="signOnMail">Mail</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="signOn[]" id="signOnPayroll" value="payroll" />
+                            <label for="signOnPayroll">Payroll</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="SignOn[]" id="signOnSelfService" value="selfService" />
+                            <label for="signOnSelfService">Self-service</label>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- button-->
+                <tr>
+                    <td colspan="2" align="center">
+                        <button type="submit">Login</button>
+                        <button type="reset">Reset</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ex4</title>
+    </head>
+    <body>
+        <h1>Get in touch with us by filling contact form below</h1>
+        <form method="post" action="https://api-gateway.fullstack.edu.vn/action_page.php">
+            <table cellpadding="5">
+                <!-- name -->
+                <tr>
+                    <td><input type="text" name="firstname" placeholder="*Enter your first name" /></td>
+                    <td><input type="text" name="lastname" placeholder="*Enter your last name" /></td>
+                </tr>
+
+                <!-- age -->
+                <tr>
+                    <td><input type="number" name="age" placeholder="*Enter your age" /></td>
+                </tr>
+
+                <!-- message -->
+                <tr>
+                    <td colspan="2">
+                        <textarea
+                            style="width: 100%"
+                            rows="15"
+                            name="message"
+                            placeholder="*Enter your message"
+                        ></textarea>
+                    </td>
+                </tr>
+
+                <!-- button -->
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Send message</button>
+                        <span>*Please fill all require form field, thanks!</span>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
