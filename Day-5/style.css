@@ -148,6 +148,7 @@ input {
 
 .course-item__image {
     width: 100%;
+    display: block;
     object-fit: cover;
 }
 
