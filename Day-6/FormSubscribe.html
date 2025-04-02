@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Form Subscribe</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                padding: 20px;
+                font-family: sans-serif;
+            }
+
+            .subscribe-form {
+                background-color: #334455;
+                border-radius: 8px;
+                padding: 16px 32px;
+                color: #fff;
+                max-width: 660px;
+                margin: 0 auto;
+            }
+
+            .subscribe-form__title {
+                font-size: 28px;
+            }
+
+            .subscribe-form__highlight {
+                color: #fca402;
+            }
+
+            .subscribe-form__description,
+            .subscribe-form__form {
+                margin-top: 10px;
+            }
+
+            .subscribe-form__input,
+            .subscribe-form__button {
+                padding: 10px 14px;
+                border-radius: 4px;
+                border: none;
+                outline: none;
+                min-width: 260px;
+            }
+
+            .subscribe-form__button {
+                cursor: pointer;
+                background-color: #f8db35;
+            }
+
+            .subscribe-form:hover .subscribe-form__input::placeholder {
+                color: #fca402;
+            }
+
+            .subscribe-form:hover .subscribe-form__input {
+                background-color: #ddd;
+            }
+
+            .subscribe-form:hover .subscribe-form__button {
+                background-color: #fca402;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="subscribe-form">
+            <h1 class="subscribe-form__title">
+                <span class="subscribe-form__highlight">Earn income</span> with your CSS skills
+            </h1>
+            <p class="subscribe-form__description">
+                Sign up and we'll send you the best freelance opportunities straight to your inbox. We're building the
+                largest self-service freelancing marketplace for people like you.
+            </p>
+            <form
+                class="subscribe-form__form"
+                action="https://api-gateway.fullstack.edu.vn/action_page.php"
+                method="post"
+            >
+                <input class="subscribe-form__input" type="email" name="email" placeholder="Email address" />
+                <button class="subscribe-form__button" type="submit">Send Me Opportunities</button>
+            </form>
+        </div>
+    </body>
+</html>

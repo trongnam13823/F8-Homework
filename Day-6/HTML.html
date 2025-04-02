@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HTML</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+
+            .content {
+                max-width: 700px;
+                margin: 0 auto;
+                color: #565c68;
+                line-height: 1.6;
+            }
+
+            .content__title {
+                font-size: 24px;
+                color: #525a6d;
+            }
+
+            .content__desc,
+            .content__promotion {
+                margin-top: 26px;
+            }
+
+            .content__code {
+                background-color: #dfe5f5;
+                padding: 1px;
+                border-radius: 4px;
+                font-family: monospace;
+                color: #2b3043;
+            }
+
+            .content__link {
+                position: relative;
+                color: #2a69ca;
+                text-decoration: none;
+                border-bottom: 1px solid #2a69ca;
+                line-height: 1;
+            }
+
+            .content__promotion {
+                border: 1px solid #71738c;
+                border-radius: 12px;
+                padding: 20px 28px;
+            }
+
+            .content__promotion__link {
+                display: inline-block;
+                margin-top: 20px;
+            }
+
+            .content__promotion__link i {
+                margin-left: 4px;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1 class="content__title">JS Maps Conclusion</h1>
+
+            <p class="content__desc">
+                In this tutorial, we looked at four uses of the <code class="content__code">.map()</code> method in
+                JavaScript. In combination with other methods, the functionality of
+                <code class="content__code">.map()</code> can be extended. For more information, see our
+                <a href="#!" class="content__link">How To Use Array Methods in JavaScript: Iteration Methods</a>
+                article.
+            </p>
+
+            <div class="content__promotion">
+                <p class="content__text">
+                    Want to deploy your application quickly? Try Cloudways, the #1 managed hosting provider for
+                    small-to-medium businesses, agencies, and developers - for free. DigitalOcean and Cloudways together
+                    will give you a reliable, scalable, and hassle-free managed hosting experience with anytime support
+                    that makes all your hosting worries a thing of the past. Start with $100 in free credits!
+                </p>
+                <a href="#!" class="content__link content__promotion__link">
+                    Learn more here
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

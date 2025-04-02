@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Custom List</title>
+
+        <style>
+            li::marker {
+                content: "😊";
+            }
+
+            li {
+                padding-left: 10px;
+            }
+
+            li + li {
+                margin-top: 6px;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>John</li>
+            <li>Michael</li>
+            <li>Simpson</li>
+            <li>Johnson</li>
+        </ul>
+    </body>
+</html>
