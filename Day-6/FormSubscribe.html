@@ -21,8 +21,11 @@
                 border-radius: 8px;
                 padding: 16px 32px;
                 color: #fff;
-                max-width: 660px;
                 margin: 0 auto;
+            }
+
+            .subscribe-form__container {
+                max-width: 600px;
             }
 
             .subscribe-form__title {
@@ -68,21 +71,23 @@
     </head>
     <body>
         <div class="subscribe-form">
-            <h1 class="subscribe-form__title">
-                <span class="subscribe-form__highlight">Earn income</span> with your CSS skills
-            </h1>
-            <p class="subscribe-form__description">
-                Sign up and we'll send you the best freelance opportunities straight to your inbox. We're building the
-                largest self-service freelancing marketplace for people like you.
-            </p>
-            <form
-                class="subscribe-form__form"
-                action="https://api-gateway.fullstack.edu.vn/action_page.php"
-                method="post"
-            >
-                <input class="subscribe-form__input" type="email" name="email" placeholder="Email address" />
-                <button class="subscribe-form__button" type="submit">Send Me Opportunities</button>
-            </form>
+            <div class="subscribe-form__container">
+                <h1 class="subscribe-form__title">
+                    <span class="subscribe-form__highlight">Earn income</span> with your CSS skills
+                </h1>
+                <p class="subscribe-form__description">
+                    Sign up and we'll send you the best freelance opportunities straight to your inbox. We're building
+                    the largest self-service freelancing marketplace for people like you.
+                </p>
+                <form
+                    class="subscribe-form__form"
+                    action="https://api-gateway.fullstack.edu.vn/action_page.php"
+                    method="post"
+                >
+                    <input class="subscribe-form__input" type="email" name="email" placeholder="Email address" />
+                    <button class="subscribe-form__button" type="submit">Send Me Opportunities</button>
+                </form>
+            </div>
         </div>
     </body>
 </html>
