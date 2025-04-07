@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ex02</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 40px;
+            }
+
+            ul {
+                list-style: none;
+            }
+
+            .question-desc,
+            .question-icon {
+                display: none;
+            }
+
+            .question-input:checked ~ label .question-icon.fa-minus,
+            .question-input:checked ~ .question-desc {
+                display: block;
+            }
+
+            .question-input:not(:checked) ~ label .question-icon.fa-minus {
+                display: none;
+            }
+
+            .question-input:not(:checked) ~ label .question-icon.fa-plus {
+                display: block;
+            }
+
+            .question-icon {
+                margin-right: 10px;
+            }
+
+            .question-label h2 {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 12px 0;
+                font-size: 16px;
+                font-weight: 400;
+                color: #fff;
+                background-color: #e24a0c;
+                padding: 10px 20px;
+                margin-top: 10px;
+            }
+
+            .question-icon {
+                font-size: 14px;
+                margin-right: 5px;
+            }
+
+            .question-desc {
+                padding: 10px 20px;
+            }
+
+            .question-desc ol {
+                padding-left: 1rem;
+            }
+
+            .question-desc * {
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li class="question-item">
+                <input hidden type="radio" name="question" class="question-input" id="question1" />
+                <label class="question-label" for="question1">
+                    <h2>
+                        <i class="fa-solid fa-plus question-icon"></i>
+                        <i class="fa-solid fa-minus question-icon"></i>
+                        Lorem ipsum dolor sit amet
+                    </h2>
+                </label>
+                <div class="question-desc">
+                    <p>How to set random colors:</p>
+                    <ol>
+                        <li>Add <b>jag-faq-random-colors</b> class.</li>
+                        <li>To change color, open theme{num}.css, find "jag-faq-random-colors".</li>
+                        <li>You can change color from here.</li>
+                    </ol>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    </p>
+                </div>
+            </li>
+
+            <li class="question-item">
+                <input hidden type="radio" name="question" class="question-input" id="question2" />
+                <label class="question-label" for="question2">
+                    <h2>
+                        <i class="fa-solid fa-plus question-icon"></i>
+                        <i class="fa-solid fa-minus question-icon"></i>
+                        Lorem ipsum dolor sit amet
+                    </h2>
+                </label>
+                <p class="question-desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi iure aliquid quos consequatur
+                    perspiciatis, hic illo architecto? Doloremque, iusto? Nostrum illo perferendis impedit labore
+                    excepturi ipsam cumque odit commodi repudiandae!
+                </p>
+            </li>
+
+            <li class="question-item">
+                <input hidden type="radio" name="question" class="question-input" id="question3" />
+                <label class="question-label" for="question3">
+                    <h2>
+                        <i class="fa-solid fa-plus question-icon"></i>
+                        <i class="fa-solid fa-minus question-icon"></i>
+                        Lorem ipsum dolor sit amet
+                    </h2>
+                </label>
+                <p class="question-desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi iure aliquid quos consequatur
+                    perspiciatis, hic illo architecto? Doloremque, iusto? Nostrum illo perferendis impedit labore
+                    excepturi ipsam cumque odit commodi repudiandae!
+                </p>
+            </li>
+        </ul>
+    </body>
+</html>
