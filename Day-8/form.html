@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact Form</title>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lobster&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+
+        <!-- Styles -->
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Lato", sans-serif;
+                display: grid;
+                place-items: center;
+                width: 100vw;
+                height: 100vh;
+                background-color: #fdfdfd;
+            }
+
+            input,
+            button,
+            textarea,
+            select {
+                font-family: inherit;
+            }
+
+            .container {
+                max-width: 620px;
+                width: 100%;
+                padding: 32px;
+            }
+
+            .title {
+                font-family: "Lobster", cursive;
+                font-size: 48px;
+                color: #323232;
+            }
+
+            .desc {
+                margin-top: 24px;
+                font-size: 18px;
+                color: #bebebe;
+            }
+
+            .desc span {
+                color: #f74a41;
+            }
+
+            .form {
+                margin-top: 32px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .form__group {
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: stretch;
+                position: relative;
+            }
+
+            .form__group:hover .form__tooltip {
+                display: block;
+            }
+
+            .form__tooltip {
+                position: absolute;
+                background-color: #000;
+                color: #fff;
+                top: -60px;
+                left: 40px;
+                white-space: nowrap;
+                padding: 10px 20px;
+                display: none;
+            }
+
+            .form__tooltip::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 40px;
+                margin-left: -5px;
+                border-width: 10px 16px 0 14px;
+                border-style: solid;
+                border-color: #000 transparent transparent transparent;
+            }
+
+            .form__control {
+                flex-grow: 1;
+                font-size: 16px;
+                padding: 16px;
+                padding-right: 60px;
+                border: 2px solid #ddd;
+                outline: none;
+                background: #fff;
+            }
+
+            .form__clear,
+            .form__requied {
+                position: absolute;
+                font-size: 10px;
+                color: #ddd;
+                top: 0px;
+                right: 0;
+                line-height: 55px;
+                width: 55px;
+                text-align: center;
+            }
+
+            .form__clear {
+                cursor: pointer;
+                font-size: 20px;
+                display: none;
+            }
+
+            .form__control:focus {
+                border-color: #333;
+            }
+
+            .form__control:focus ~ .form__clear {
+                display: block;
+            }
+
+            .form__control:focus + .form__requied,
+            .form__control:not(:placeholder-shown) + .form__requied {
+                display: none;
+            }
+
+            .form__control:focus ~ .form__icon {
+                background: #333;
+            }
+
+            textarea.form__control {
+                height: 250px;
+                resize: vertical;
+            }
+
+            .form__control::placeholder {
+                color: #bebebe;
+            }
+
+            select.form__control {
+                appearance: none;
+                color: #bebebe;
+            }
+
+            .form__control option,
+            select:valid {
+                color: #000;
+            }
+
+            select.form__control:invalid ~ .form__requied {
+                display: block;
+            }
+
+            select:invalid {
+                color: #bebebe;
+            }
+
+            .form__icon {
+                width: 64px;
+                display: flex;
+                padding: 16px;
+                justify-content: center;
+                font-size: 20px;
+                background: #ddd;
+                color: #fff;
+            }
+
+            .form__footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .form__checkbox {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: #7e7e7e;
+                cursor: pointer;
+            }
+
+            .form__checkbox-box {
+                width: 25px;
+                aspect-ratio: 1;
+                border: 2px solid #ddd;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .form__checkbox i {
+                color: #000;
+                display: none;
+            }
+
+            .form__checkbox input:checked ~ .form__checkbox-box i {
+                display: block;
+            }
+
+            .form__submit {
+                padding: 10px 40px;
+                font-weight: bold;
+                background: #f74a41;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+
+            .form__submit:hover {
+                opacity: 0.8;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="container">
+            <h1 class="title">Hey there</h1>
+            <p class="desc">
+                <span>We'd like to hear from you.</span> Send us your message or just say hi with our contact form or
+                directly via phone, we love to chat.
+            </p>
+
+            <form class="form" action="https://api-gateway.fullstack.edu.vn/action_page.php" method="post">
+                <!-- Name -->
+                <div class="form__group">
+                    <p class="form__tooltip">Enter your name</p>
+                    <input required id="name" name="name" type="text" placeholder="Your name" class="form__control" />
+                    <i class="form__requied fa-solid fa-star"></i>
+                    <i class="form__clear fa-solid fa-xmark"></i>
+                    <label class="form__icon" for="name"><i class="fa-solid fa-user"></i></label>
+                </div>
+
+                <!-- Email -->
+                <div class="form__group">
+                    <p class="form__tooltip">Enter your email</p>
+                    <input
+                        required
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="your@domain"
+                        class="form__control"
+                    />
+                    <i class="form__requied fa-solid fa-star"></i>
+                    <i class="form__clear fa-solid fa-xmark"></i>
+                    <label class="form__icon" for="email"><i class="fa-solid fa-envelope"></i></label>
+                </div>
+
+                <!-- Phone -->
+                <div class="form__group">
+                    <p class="form__tooltip">Enter your phone number</p>
+                    <input id="tel" name="tel" type="tel" placeholder="+44 00 123" class="form__control" />
+                    <label class="form__icon" for="tel"><i class="fa-solid fa-mobile-screen-button"></i></label>
+                </div>
+
+                <!-- Subject -->
+                <div class="form__group">
+                    <p class="form__tooltip">Select a subject</p>
+                    <select id="subject" name="subject" class="form__control" required>
+                        <option value="" hidden selected>Subject</option>
+                        <option value="subject1">Subject 1</option>
+                        <option value="subject2">Subject 2</option>
+                        <option value="subject3">Subject 3</option>
+                    </select>
+                    <i class="form__requied fa-solid fa-star"></i>
+                    <label class="form__icon" for="subject"><i class="fa-solid fa-book"></i></label>
+                </div>
+
+                <!-- Message -->
+                <div class="form__group">
+                    <p class="form__tooltip">Enter your message</p>
+                    <textarea
+                        required
+                        id="message"
+                        name="message"
+                        placeholder="Message"
+                        class="form__control"
+                    ></textarea>
+                    <i class="form__requied fa-solid fa-star"></i>
+                    <i class="form__clear fa-solid fa-xmark"></i>
+                    <label class="form__icon" for="message"><i class="fa-solid fa-message"></i></label>
+                </div>
+
+                <!-- Footer -->
+                <div class="form__footer">
+                    <label class="form__checkbox">
+                        <input id="send" name="send" type="checkbox" value="true" hidden />
+                        <div class="form__checkbox-box"><i class="fa-solid fa-check"></i></div>
+                        Send me a copy of this message
+                    </label>
+
+                    <button type="submit" class="form__submit">SEND</button>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>
