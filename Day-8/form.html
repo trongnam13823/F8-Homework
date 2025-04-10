@@ -82,7 +82,19 @@
                 position: relative;
             }
 
-            .form__group:hover .form__tooltip {
+            .form__group:hover .form__icon {
+                background-color: #333;
+            }
+
+            .form__group:hover .form__control {
+                border-color: #333;
+            }
+
+            .form__group:hover .form__requied {
+                color: #333;
+            }
+
+            .form__control:focus ~ .form__tooltip {
                 display: block;
             }
 
@@ -142,10 +154,11 @@
 
             .form__control:focus ~ .form__clear {
                 display: block;
+                color: #333;
             }
 
-            .form__control:focus + .form__requied,
-            .form__control:not(:placeholder-shown) + .form__requied {
+            .form__control:focus ~ .form__requied,
+            .form__control:not(:placeholder-shown) ~ .form__requied {
                 display: none;
             }
 
@@ -235,6 +248,10 @@
             .form__submit:hover {
                 opacity: 0.8;
             }
+
+            textarea.form__control {
+                resize: none;
+            }
         </style>
     </head>
     <body>
@@ -248,8 +265,8 @@
             <form class="form" action="https://api-gateway.fullstack.edu.vn/action_page.php" method="post">
                 <!-- Name -->
                 <div class="form__group">
-                    <p class="form__tooltip">Enter your name</p>
                     <input required id="name" name="name" type="text" placeholder="Your name" class="form__control" />
+                    <p class="form__tooltip">Enter your name</p>
                     <i class="form__requied fa-solid fa-star"></i>
                     <i class="form__clear fa-solid fa-xmark"></i>
                     <label class="form__icon" for="name"><i class="fa-solid fa-user"></i></label>
@@ -257,7 +274,6 @@
 
                 <!-- Email -->
                 <div class="form__group">
-                    <p class="form__tooltip">Enter your email</p>
                     <input
                         required
                         id="email"
@@ -266,6 +282,7 @@
                         placeholder="your@domain"
                         class="form__control"
                     />
+                    <p class="form__tooltip">Enter your email</p>
                     <i class="form__requied fa-solid fa-star"></i>
                     <i class="form__clear fa-solid fa-xmark"></i>
                     <label class="form__icon" for="email"><i class="fa-solid fa-envelope"></i></label>
@@ -273,27 +290,26 @@
 
                 <!-- Phone -->
                 <div class="form__group">
-                    <p class="form__tooltip">Enter your phone number</p>
                     <input id="tel" name="tel" type="tel" placeholder="+44 00 123" class="form__control" />
+                    <p class="form__tooltip">Enter your phone number</p>
                     <label class="form__icon" for="tel"><i class="fa-solid fa-mobile-screen-button"></i></label>
                 </div>
 
                 <!-- Subject -->
                 <div class="form__group">
-                    <p class="form__tooltip">Select a subject</p>
                     <select id="subject" name="subject" class="form__control" required>
                         <option value="" hidden selected>Subject</option>
                         <option value="subject1">Subject 1</option>
                         <option value="subject2">Subject 2</option>
                         <option value="subject3">Subject 3</option>
                     </select>
+                    <p class="form__tooltip">Select a subject</p>
                     <i class="form__requied fa-solid fa-star"></i>
                     <label class="form__icon" for="subject"><i class="fa-solid fa-book"></i></label>
                 </div>
 
                 <!-- Message -->
                 <div class="form__group">
-                    <p class="form__tooltip">Enter your message</p>
                     <textarea
                         required
                         id="message"
@@ -301,6 +317,7 @@
                         placeholder="Message"
                         class="form__control"
                     ></textarea>
+                    <p class="form__tooltip">Enter your message</p>
                     <i class="form__requied fa-solid fa-star"></i>
                     <i class="form__clear fa-solid fa-xmark"></i>
                     <label class="form__icon" for="message"><i class="fa-solid fa-message"></i></label>
