@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NFT Marketplace</title>
+
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- style -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="./assets/css/respo.css" />
+    </head>
+    <body>
+        <!-- header -->
+        <header class="header">
+            <a href="">
+                <img class="logo-img" src="./assets/img/logo.png" alt="NFT Marketplace" />
+            </a>
+
+            <nav class="nav">
+                <a class="nav__link" href="#!">Marketplace</a>
+                <a class="nav__link" href="#!">Rankings</a>
+                <a class="nav__link" href="#!">Connect a wallet</a>
+                <a class="nav__cta btn lg fill" href="#!">
+                    <img src="./assets/icon/user.svg" alt="user" />
+                    <span>Sign Up</span>
+                </a>
+            </nav>
+
+            <button class="menu">
+                <img src="./assets/icon/menu.svg" alt="menu" />
+            </button>
+        </header>
+
+        <main>
+            <!-- hero -->
+            <section class="hero container">
+                <div class="hero__cell">
+                    <h1 class="hero__title heading-lv1">Discover digital art & Collect NFTs</h1>
+                    <p class="hero__desc desc-lv1">
+                        NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k
+                        NFT artists.
+                    </p>
+                </div>
+
+                <div class="hero__cell hero__artwork">
+                    <img class="hero__artwork__thumb" src="./assets/img/hero-thumb.png" alt="hero-thumb" />
+                    <div class="hero__artwork__info">
+                        <b class="hero__artwork__title">Space Walking</b>
+                        <p class="hero__artwork__author">
+                            <img class="hero__artwork__avatar" src="./assets/img/hero-avartar.png" alt="hero-avartar" />
+                            <span class="hero__artwork__name">Animakid</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="hero__cell">
+                    <a href="#!" class="hero__cta btn lg fill">
+                        <img src="./assets/icon/rocket.svg" alt="rocket" />
+                        <span>Get Started</span>
+                    </a>
+
+                    <ul class="hero__stats">
+                        <li class="hero__stat">
+                            <b class="hero__stat__value">240k+ </b>
+                            <span class="hero__stat__label">Total Sale</span>
+                        </li>
+                        <li class="hero__stat">
+                            <b class="hero__stat__value">100k+</b>
+                            <span class="hero__stat__label">Auctions</span>
+                        </li>
+                        <li class="hero__stat">
+                            <b class="hero__stat__value">320k+</b>
+                            <span class="hero__stat__label">Artists</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- trending -->
+            <section class="trending container">
+                <h2 class="trending__title heading-lv2">Trending Collection</h2>
+                <p class="trending__desc desc-lv1">Checkout our weekly updated trending collection.</p>
+
+                <ul class="trending__list">
+                    <li class="trending__item">
+                        <div class="trending__img">
+                            <img src="./assets/img/trending-1-0.png" alt="trending-1" />
+                        </div>
+                        <div class="trending__img">
+                            <img src="./assets/img/trending-1-1.png" alt="trending-1-1" />
+                        </div>
+                        <div class="trending__img">
+                            <img src="./assets/img/trending-1-2.png" alt="trending-1-2" />
+                        </div>
+                        <div class="trending__img">
+                            <span>1025+</span>
+                        </div>
+                        <div class="trending__info">
+                            <a href="#!">
+                                <h3 class="trending__name">DSGN Animals</h3>
+                            </a>
+                            <p class="trending__author">
+                                <img
+                                    class="trending__author__avartar"
+                                    src="./assets/img/trending-avartar-1.png"
+                                    alt="MrFox"
+                                />
+                                <span class="trending__author__name">MrFox</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="trending__item">
+                        <div class="trending__img">
+                            <img src="./assets/img/trending-2-0.png" alt="trending-2" />
+                        </div>
+                        <div class="trending__img">
+                            <img src="./assets/img/trending-2-1.png" alt="trending-2-1" />
+                        </div>
+                        <div class="trending__img">
+                            <img src="./assets/img/trending-2-2.png" alt="trending-2-2" />
+                        </div>
+                        <div class="trending__img">
+                            <span>1025+</span>
+                        </div>
+                        <div class="trending__info">
+                            <a href="#!">
+                                <h3 class="trending__name">Magic Mushrooms</h3>
+                            </a>
+                            <p class="trending__author">
+                                <img
+                                    class="trending__author__avartar"
+                                    src="./assets/img/trending-avartar-2.png"
+                                    alt="MrFox"
+                                />
+                                <span class="trending__author__name">Shroomie</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="trending__item">
+                        <div class="trending__img">
+                            <img src="./assets/img/trending-3-0.png" alt="trending-3" />
+                        </div>
+                        <div class="trending__img">
+                            <img src="./assets/img/trending-3-1.png" alt="trending-3-1" />
+                        </div>
+                        <div class="trending__img">
+                            <img src="./assets/img/trending-3-2.png" alt="trending-3-2" />
+                        </div>
+                        <div class="trending__img">
+                            <span>1025+</span>
+                        </div>
+                        <div class="trending__info">
+                            <a href="#!">
+                                <h3 class="trending__name">Disco Machines</h3>
+                            </a>
+                            <p class="trending__author">
+                                <img
+                                    class="trending__author__avartar"
+                                    src="./assets/img/trending-avartar-3.png"
+                                    alt="MrFox"
+                                />
+                                <span class="trending__author__name">BeKind2Robots</span>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- creator -->
+            <section class="creator container">
+                <div class="creator__header">
+                    <div>
+                        <h2 class="heading-lv2">Top creators</h2>
+                        <p class="desc-lv1">Checkout Top Rated Creators on the NFT Marketplace</p>
+                    </div>
+                    <a href="#!" class="creator__header__btn btn lg outline">
+                        <img src="./assets/icon/rocket.svg" alt="rocket" />
+                        <span>View Rankings</span>
+                    </a>
+                </div>
+
+                <ol class="creator__list">
+                    <li class="creator__item">
+                        <span class="creator__number">1</span>
+                        <img class="creator__avartar" src="./assets/img/creator-1.png" alt="Keepitreal" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">Keepitreal</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">2</span>
+                        <img class="creator__avartar" src="./assets/img/creator-2.png" alt="DigiLab" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">DigiLab</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">3</span>
+                        <img class="creator__avartar" src="./assets/img/creator-3.png" alt="GravityOne" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">GravityOne</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">4</span>
+                        <img class="creator__avartar" src="./assets/img/creator-4.png" alt="Juanie" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">Juanie</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">5</span>
+                        <img class="creator__avartar" src="./assets/img/creator-5.png" alt="BlueWhale" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">BlueWhale</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">6</span>
+                        <img class="creator__avartar" src="./assets/img/creator-6.png" alt="Mr Fox" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">Mr Fox</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">7</span>
+                        <img class="creator__avartar" src="./assets/img/creator-7.png" alt="Shroomie" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">Shroomie</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">8</span>
+                        <img class="creator__avartar" src="./assets/img/creator-8.png" alt="robotica" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">robotica</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">9</span>
+                        <img class="creator__avartar" src="./assets/img/creator-9.png" alt="RustyRobot" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">RustyRobot</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">10</span>
+                        <img class="creator__avartar" src="./assets/img/creator-10.png" alt="animakid" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">animakid</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">11</span>
+                        <img class="creator__avartar" src="./assets/img/creator-11.png" alt="Dotgu" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">Dotgu</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="creator__item">
+                        <span class="creator__number">12</span>
+                        <img class="creator__avartar" src="./assets/img/creator-12.png" alt="Ghiblier" />
+
+                        <div class="creator__info">
+                            <a href="#!">
+                                <h3 class="creator__name">Ghiblier</h3>
+                            </a>
+                            <p class="creator__sales">
+                                <span class="creator__sales__label">Total Sales:</span>
+                                <span class="creator__sales__value">34.53 ETH</span>
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+
+                <a href="#!" class="creator__btn btn lg outline">
+                    <img src="./assets/icon/rocket.svg" alt="rocket" />
+                    <span>View Rankings</span>
+                </a>
+            </section>
+
+            <!-- categorie -->
+            <section class="categorie container">
+                <h2 class="heading-lv2">Browse Categories</h2>
+                <ul class="categorie__list">
+                    <li class="categorie__item">
+                        <div class="categorie__item__img">
+                            <img class="categoria__thumb" src="./assets/img/categorie-1.png" alt="Art" />
+                            <div class="categoria__blur"></div>
+                            <img class="categoria__icon" src="./assets/icon/art.svg" alt="Art" />
+                        </div>
+                        <a class="categorie__link" href="#!">
+                            <h3 class="categorie__item__title">Art</h3>
+                        </a>
+                    </li>
+                    <li class="categorie__item">
+                        <div class="categorie__item__img">
+                            <img class="categoria__thumb" src="./assets/img/categorie-2.png" alt="Collectibles" />
+                            <div class="categoria__blur"></div>
+                            <img class="categoria__icon" src="./assets/icon/collectibles.svg" alt="Collectibles" />
+                        </div>
+                        <a class="categorie__link" href="#!">
+                            <h3 class="categorie__item__title">Collectibles</h3>
+                        </a>
+                    </li>
+                    <li class="categorie__item">
+                        <div class="categorie__item__img">
+                            <img class="categoria__thumb" src="./assets/img/categorie-3.png" alt="Music" />
+                            <div class="categoria__blur"></div>
+                            <img class="categoria__icon" src="./assets/icon/music.svg" alt="Music" />
+                        </div>
+                        <a class="categorie__link" href="#!">
+                            <h3 class="categorie__item__title">Music</h3>
+                        </a>
+                    </li>
+                    <li class="categorie__item">
+                        <div class="categorie__item__img">
+                            <img class="categoria__thumb" src="./assets/img/categorie-4.png" alt="Photography" />
+                            <div class="categoria__blur"></div>
+                            <img class="categoria__icon" src="./assets/icon/photography.svg" alt="Photography" />
+                        </div>
+                        <a class="categorie__link" href="#!">
+                            <h3 class="categorie__item__title">Photography</h3>
+                        </a>
+                    </li>
+                    <li class="categorie__item">
+                        <div class="categorie__item__img">
+                            <img class="categoria__thumb" src="./assets/img/categorie-5.png" alt="Video" />
+                            <div class="categoria__blur"></div>
+                            <img class="categoria__icon" src="./assets/icon/video.svg" alt="Video" />
+                        </div>
+                        <a class="categorie__link" href="#!">
+                            <h3 class="categorie__item__title">Video</h3>
+                        </a>
+                    </li>
+                    <li class="categorie__item">
+                        <div class="categorie__item__img">
+                            <img class="categoria__thumb" src="./assets/img/categorie-6.png" alt="Utility" />
+                            <div class="categoria__blur"></div>
+                            <img class="categoria__icon" src="./assets/icon/utility.svg" alt="Utility" />
+                        </div>
+                        <a class="categorie__link" href="#!">
+                            <h3 class="categorie__item__title">Utility</h3>
+                        </a>
+                    </li>
+                    <li class="categorie__item">
+                        <div class="categorie__item__img">
+                            <img class="categoria__thumb" src="./assets/img/categorie-7.png" alt="Sport" />
+                            <div class="categoria__blur"></div>
+                            <img class="categoria__icon" src="./assets/icon/sport.svg" alt="Sport" />
+                        </div>
+                        <a class="categorie__link" href="#!">
+                            <h3 class="categorie__item__title">Sport</h3>
+                        </a>
+                    </li>
+                    <li class="categorie__item">
+                        <div class="categorie__item__img">
+                            <img class="categoria__thumb" src="./assets/img/categorie-8.png" alt="Virtual Worlds" />
+                            <div class="categoria__blur"></div>
+                            <img class="categoria__icon" src="./assets/icon/worlds.svg" alt="Virtual Worlds" />
+                        </div>
+                        <a class="categorie__link" href="#!">
+                            <h3 class="categorie__item__title">Virtual Worlds</h3>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>
