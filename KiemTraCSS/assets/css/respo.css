@@ -4,6 +4,31 @@
     .categorie__item__title {
         font-size: 1.8rem;
     }
+
+    /* subscribe */
+    .form__subscribe {
+        gap: 16px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form__subscribe input {
+        padding-right: 20px;
+    }
+
+    .form__subscribe button {
+        position: relative;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .subscribe__title {
+        font-size: 3.2rem;
+    }
+
+    .subscribe__desc {
+        font-size: 2rem;
+    }
 }
 
 /* lg */
@@ -120,6 +145,103 @@
         font-size: 1.6rem;
         padding: 20px 20px 25px;
     }
+
+    /* discover */
+    .discover__list {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 40px;
+    }
+
+    .discover__item:nth-child(n + 3) {
+        display: none;
+    }
+
+    /* highlight */
+    .highlight {
+        aspect-ratio: 834 / 630;
+    }
+
+    .highlight__title {
+        font-size: 3.8rem;
+        line-height: 120%;
+    }
+
+    /* works */
+    .works__list {
+        margin-top: 40px;
+    }
+
+    .works__title {
+        font-size: 1.6rem;
+    }
+
+    .works__desc {
+        font-size: 1.2rem;
+    }
+
+    .works__item {
+        padding: 10px 20px 30px;
+    }
+
+    /* subscribe */
+    .subscribe .form__subscribe {
+        gap: 16px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subscribe .form__subscribe input {
+        padding: 12px 20px;
+        height: 46px;
+    }
+
+    .subscribe .form__subscribe button {
+        height: 46px;
+    }
+
+    /* footer */
+    .footer__content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer__title {
+        margin-bottom: 20px;
+    }
+
+    .footer__subscribe,
+    .footer__subscribe__desc,
+    .footer__logo p {
+        max-width: unset;
+    }
+
+    .footer__form__subscribe {
+        display: flex;
+        position: relative;
+    }
+
+    .footer__form__subscribe input {
+        padding: 19px 20px;
+    }
+
+    .footer__form__subscribe button {
+        border-radius: 20px;
+        margin-left: -40px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: fit-content;
+    }
+
+    .footer__form__subscribe input {
+        padding-right: calc(178px + 20px);
+    }
+
+    .footer__content {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 /* md */
@@ -205,6 +327,112 @@
     /* categorie */
     .categorie__list {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* discover */
+    .discover__list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .discover__item:nth-child(n + 3) {
+        display: block;
+    }
+
+    .discover__header__btn {
+        display: none;
+    }
+
+    .discover__btn {
+        display: flex;
+    }
+
+    /* highlight */
+    .highlight__container {
+        aspect-ratio: 375 / 593;
+        flex-direction: column;
+        align-items: start;
+        justify-content: end;
+    }
+
+    .highlight__btn {
+        width: 100%;
+    }
+
+    .highlight__content .highlight__btn {
+        display: none;
+    }
+
+    .highlight__container > .highlight__btn {
+        display: flex;
+    }
+
+    .highlight__container > div {
+        width: 100%;
+    }
+
+    /* works */
+    .works__list {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+
+    .works__item {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        text-align: left;
+        padding: 20px;
+    }
+
+    .works__img {
+        width: 100px;
+    }
+
+    .works__title {
+        margin-top: 0;
+    }
+
+    /* subscribe */
+    .subscribe {
+        padding: 40px 0;
+    }
+
+    .subscribe__container.container {
+        padding: 0;
+        flex-direction: column;
+        background-color: transparent;
+        gap: 30px;
+    }
+
+    .subscribe__container.container > * {
+        width: 100%;
+    }
+
+    .subscribe__img {
+        height: 255px;
+    }
+
+    .form__subscribe {
+        gap: 16px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form__subscribe input {
+        padding: 12px 20px;
+        height: 46px;
+    }
+
+    .form__subscribe button.btn {
+        position: relative;
+        width: 100%;
+        margin-left: 0;
+        height: 46px;
+    }
+
+    /* footer */
+    .footer__form__subscribe button.btn img {
+        display: flex;
     }
 }
 
