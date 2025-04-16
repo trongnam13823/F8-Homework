@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ex01</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --font--heading: "Space Grotesk", sans-serif;
+            }
+
+            body {
+                font-family: "Inter", sans-serif;
+            }
+
+            .timeline-item {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+                width: fit-content;
+                align-items: center;
+                text-align: right;
+                column-gap: 12px;
+                row-gap: 8px;
+            }
+
+            .timeline-item__category,
+            .timeline-item__title {
+                font-family: var(--font--heading);
+            }
+
+            .timeline-item__marker {
+                display: inline-block;
+                padding: 5px;
+                border: 5px solid rgba(0, 128, 0, 0.2);
+                background-color: green;
+                background-clip: padding-box;
+                border-radius: 50%;
+            }
+
+            .timeline-item__line {
+                width: 2px;
+                background-color: #f0f0f0;
+                height: 100%;
+                justify-self: center;
+            }
+
+            .timeline-item__description {
+                max-width: 280px;
+            }
+
+            .timeline-item__content {
+                padding: 5px 0 30px;
+                color: #888888;
+            }
+
+            .timeline-item__category {
+                background-color: #eee;
+                padding: 5px 15px;
+                border-radius: 999px;
+                display: inline-block;
+                font-weight: bold;
+                color: #888888;
+                margin-top: 14px;
+                transition: background-color 0.2s, color 0.2s;
+            }
+
+            .timeline-item__date {
+                color: #888888;
+                font-size: 14px;
+            }
+
+            .timeline-item__title {
+                font-size: 26px;
+            }
+
+            .timeline-item:hover .timeline-item__category {
+                background-color: #a26f5a;
+                color: #fff;
+            }
+
+            .timeline-item + .timeline-item {
+                margin-top: 10px;
+            }
+
+            .container {
+                max-width: 1110px;
+                margin: 0 auto;
+                margin-top: 100px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .media {
+                display: flex;
+            }
+
+            .media img:last-child {
+                width: 400px;
+                height: 500px;
+                object-fit: cover;
+            }
+
+            .media img:first-child {
+                width: 300px;
+                height: 400px;
+                object-fit: cover;
+                margin-right: -150px;
+                margin-top: 200px;
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="timeline-list">
+                <div class="timeline-item">
+                    <h2 class="timeline-item__title">Together We Build</h2>
+                    <div class="timeline-item__marker"></div>
+                    <span class="timeline-item__date">2012 - 2007</span>
+
+                    <div class="timeline-item__content">
+                        <p class="timeline-item__description">
+                            In quasi vitae non alias nulla qui .dolores dolor non tempora tenetur
+                        </p>
+                        <span class="timeline-item__category">Family Law</span>
+                    </div>
+
+                    <div class="timeline-item__line"></div>
+                </div>
+                <div class="timeline-item">
+                    <h2 class="timeline-item__title">Completed 1000 Cases</h2>
+                    <div class="timeline-item__marker"></div>
+                    <span class="timeline-item__date">2016 - 2012</span>
+
+                    <div class="timeline-item__content">
+                        <p class="timeline-item__description">
+                            In quasi vitae non alias nulla qui .dolores dolor non tempora tenetur
+                        </p>
+                        <span class="timeline-item__category">Criminal Law</span>
+                    </div>
+
+                    <div class="timeline-item__line"></div>
+                </div>
+                <div class="timeline-item">
+                    <h2 class="timeline-item__title">We Are Number One</h2>
+                    <div class="timeline-item__marker"></div>
+                    <span class="timeline-item__date">2018 - 2016</span>
+
+                    <div class="timeline-item__content">
+                        <p class="timeline-item__description">
+                            In quasi vitae non alias nulla qui .dolores dolor non tempora tenetur
+                        </p>
+                        <span class="timeline-item__category">Business Law</span>
+                    </div>
+
+                    <div class="timeline-item__line"></div>
+                </div>
+                <div class="timeline-item">
+                    <h2 class="timeline-item__title">Intellectual Property</h2>
+                    <div class="timeline-item__marker"></div>
+                    <span class="timeline-item__date">2022 - 2018</span>
+
+                    <div class="timeline-item__content">
+                        <p class="timeline-item__description">
+                            In quasi vitate non alias nulla qui dolores dolor non tempora tenetur
+                        </p>
+                        <span class="timeline-item__category">Car Accident</span>
+                    </div>
+
+                    <div class="timeline-item__line"></div>
+                </div>
+            </div>
+            <div class="media">
+                <img src="./ex01-2.avif" alt="" />
+                <img src="./ex01-1.avif" alt="" />
+            </div>
+        </div>
+    </body>
+</html>

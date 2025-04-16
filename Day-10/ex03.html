@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact Form</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: system-ui, sans-serif;
+            }
+
+            .container {
+                max-width: 960px;
+                margin: 100px auto;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 38px;
+                font-weight: bold;
+            }
+
+            p {
+                font-size: 18px;
+                color: #555;
+                margin-top: 18px;
+            }
+
+            form {
+                margin-top: 48px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .form-floating {
+                position: relative;
+                width: 100%;
+            }
+
+            .form-floating input,
+            .form-floating select,
+            .form-floating textarea {
+                height: 56px;
+                width: 100%;
+                padding: 20px;
+                padding-bottom: 10px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #fff;
+                outline: none;
+            }
+
+            .form-floating select {
+                padding: 20px;
+            }
+
+            .form-input:focus ~ label,
+            .form-input:not(:placeholder-shown) ~ label {
+                top: 4px;
+                font-size: 14px;
+            }
+
+            .form-input:focus {
+                border-color: #3b82f6;
+            }
+
+            .form-floating label {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                color: #888;
+                pointer-events: none;
+                transition: 0.25s;
+            }
+
+            .form-textarea {
+                grid-column: 1 / -1;
+            }
+
+            .form-floating textarea {
+                height: 200px;
+                resize: vertical;
+            }
+
+            button {
+                grid-column: 1 / -1;
+                margin-top: 10px;
+                padding: 15px 30px;
+                font-size: 18px;
+                font-weight: bold;
+                border: none;
+                background-color: #3b82f6;
+                color: white;
+                border-radius: 999px;
+                cursor: pointer;
+                justify-self: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Drop Us a Line</h1>
+            <p>Reach out to us from our contact form and we will get back to you shortly.</p>
+
+            <form>
+                <div class="form-floating">
+                    <input class="form-input" type="text" id="firstname" placeholder=" " required />
+                    <label for="firstname">First Name *</label>
+                </div>
+                <div class="form-floating">
+                    <input class="form-input" type="text" id="lastname" placeholder=" " required />
+                    <label for="lastname">Last Name *</label>
+                </div>
+                <div class="form-floating">
+                    <input class="form-input" type="email" id="email" placeholder=" " required />
+                    <label for="email">Email *</label>
+                </div>
+                <div class="form-floating">
+                    <select id="jobs">
+                        <option value="Sales">Sales</option>
+                        <option value="Sales 1">Sales 1</option>
+                        <option value="Sales 2">Sales 2</option>
+                        <option value="Sales 3">Sales 3</option>
+                    </select>
+                </div>
+                <div class="form-floating form-textarea">
+                    <textarea class="form-input" id="message" placeholder=" " required></textarea>
+                    <label for="message">Message *</label>
+                </div>
+                <button type="submit">Send message</button>
+            </form>
+        </div>
+    </body>
+</html>
