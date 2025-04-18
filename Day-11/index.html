@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 1. KHAI BÁO BIẾN CƠ BẢN
+            console.log("===== 1. Biến và Kiểu Dữ Liệu =====");
+
+            const PI = 3.14; // hằng số
+            let a = 10; // number
+            let b = 3; // number
+            let name = "Nam"; // string
+
+            console.log("a =", a);
+            console.log("b =", b);
+            console.log("name =", name);
+            console.log("PI =", PI);
+
+            // 2. TOÁN TỬ SỐ HỌC (NUMBER)
+            console.log("\n===== 2. Toán tử số học =====");
+
+            console.log("Cộng (a + b):", a + b);
+            console.log("Trừ (a - b):", a - b);
+            console.log("Nhân (a * b):", a * b);
+            console.log("Chia (a / b):", a / b);
+            console.log("Chia dư (a % b):", a % b);
+            console.log("Lũy thừa (a ** b):", a ** b);
+
+            // 3. TOÁN TỬ ++ VÀ --
+            console.log("\n===== 3. Toán tử tăng / giảm =====");
+
+            let x = 5;
+
+            console.log("Giá trị ban đầu:", x);
+            console.log("x++ =", x++); // In trước, tăng sau
+            console.log("Sau x++:", x);
+            console.log("++x =", ++x); // Tăng trước, in sau
+
+            console.log("x-- =", x--);
+            console.log("Sau x--:", x);
+            console.log("--x =", --x);
+
+            // 4. TOÁN TỬ VỚI KIỂU DỮ LIỆU STRING
+            console.log("\n===== 4. Toán tử với String =====");
+
+            let firstName = "Nam";
+            let lastName = "Trọng";
+            let fullName = lastName + " " + firstName;
+
+            console.log("Nối chuỗi:", fullName);
+
+            // 5. NUMBER + STRING (CÁC TRƯỜNG HỢP ĐẶC BIỆT)
+            console.log("\n===== 5. Number + String (ép kiểu ngầm định) =====");
+
+            let num = 5;
+            let str = "10";
+
+            console.log("num + str =", num + str); // "510" (ép số thành chuỗi và nối chuỗi)
+            console.log("str + num =", str + num); // "105"
+
+            console.log("num - str =", num - str); // -5 (chuỗi "10" được ép về số)
+            console.log("num * str =", num * str); // 50
+            console.log("str / num =", str / num); // 2
+
+            // Trường hợp đặc biệt
+            console.log('"abc" - 1 =', "abc" - 1); // NaN
+            console.log('"123abc" * 2 =', "123abc" * 2); // NaN
+            console.log('"10" + 1 + 2 =', "10" + 1 + 2); // "1012"
+            console.log('1 + 2 + "10" =', 1 + 2 + "10"); // "310"
+
+            // 6. ÉP KIỂU TƯỜNG MINH
+            console.log("\n===== 6. Ép kiểu tường minh =====");
+
+            let s = "20";
+            let n = 10;
+
+            let total = Number(s) + n;
+            console.log("Number(s) + n =", total); // 30
+
+            let invalid = Number("abc");
+            console.log('Number("abc") =', invalid); // NaN
+        </script>
+    </body>
+</html>
