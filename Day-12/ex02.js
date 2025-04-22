@@ -1,7 +1,7 @@
 //   const num = null
 //   let isPerfectSquare = false
 
-//   num < 0
+//   num >= 0
 //      │
 //      │
 //      │ yes
