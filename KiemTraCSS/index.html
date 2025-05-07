@@ -32,6 +32,9 @@
             rel="stylesheet"
         />
 
+        <!-- aos -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
         <!-- style -->
         <link rel="stylesheet" href="./assets/css/reset.css" />
         <link rel="stylesheet" href="./assets/css/style.css" />
@@ -105,7 +108,7 @@
             </section>
 
             <!-- trending -->
-            <section id="marketplace" class="trending container">
+            <section data-aos="fade-up" id="marketplace" class="trending container">
                 <h2 class="trending__title heading-lv2">Trending Collection</h2>
                 <p class="trending__desc desc-lv1">Checkout our weekly updated trending collection.</p>
 
@@ -195,7 +198,7 @@
             </section>
 
             <!-- creator -->
-            <section id="rankings" class="creator container">
+            <section data-aos="fade-up" id="rankings" class="creator container">
                 <div class="creator__header">
                     <div>
                         <h2 class="heading-lv2">Top creators</h2>
@@ -385,7 +388,7 @@
             </section>
 
             <!-- categorie -->
-            <section class="categorie container">
+            <section data-aos="fade-up" class="categorie container">
                 <h2 class="heading-lv2">Browse Categories</h2>
                 <ul class="categorie__list">
                     <li class="categorie__item">
@@ -472,7 +475,7 @@
             </section>
 
             <!-- discover -->
-            <section class="discover container">
+            <section data-aos="fade-up" class="discover container">
                 <div class="discover__header">
                     <div>
                         <h2 class="heading-lv2">Discover More NFTs</h2>
@@ -572,7 +575,7 @@
             </section>
 
             <!-- highlight -->
-            <section class="highlight highlight--magicMashrooms">
+            <section data-aos="fade-up" class="highlight highlight--magicMashrooms">
                 <div class="highlight__container container">
                     <div class="highlight__content">
                         <p class="highlight__creator">
@@ -612,7 +615,7 @@
             </section>
 
             <!-- works -->
-            <section id="wallet" class="works container">
+            <section data-aos="fade-up" id="wallet" class="works container">
                 <h2 class="heading-lv2">How it works</h2>
                 <p class="desc-lv1">Find out how to get started</p>
 
@@ -651,7 +654,7 @@
             </section>
 
             <!-- subscribe -->
-            <section class="subscribe">
+            <section data-aos="fade-up" class="subscribe">
                 <div class="subscribe__container container">
                     <div class="subscribe__content">
                         <img class="subscribe__img" src="./assets/img/subscribe.png" alt="Join our weekly digest" />
@@ -678,7 +681,7 @@
         </main>
 
         <!-- footer -->
-        <footer class="footer">
+        <footer data-aos="fade-up" class="footer">
             <div class="footer__container container">
                 <div class="footer__content">
                     <div class="footer__logo">
@@ -696,9 +699,9 @@
                     </div>
                     <div class="footer__nav">
                         <h2 class="footer__title">Explore</h2>
-                        <a class="footer__nav__link" href="#!">Marketplace</a>
-                        <a class="footer__nav__link" href="#!">Rankings</a>
-                        <a class="footer__nav__link" href="#!">Connect a wallet</a>
+                        <a class="footer__nav__link" href="#marketplace">Marketplace</a>
+                        <a class="footer__nav__link" href="#rankings">Rankings</a>
+                        <a class="footer__nav__link" href="#wallet">Connect a wallet</a>
                     </div>
                     <div class="footer__subscribe">
                         <h2 class="footer__title">Join our weekly digest</h2>
@@ -721,5 +724,10 @@
                 <p class="footer__copyright">Ⓒ NFT Market. Use this template freely.</p>
             </div>
         </footer>
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
     </body>
 </html>
