@@ -45,10 +45,10 @@
             </a>
 
             <nav class="nav">
-                <a class="nav__link" href="#!">Marketplace</a>
-                <a class="nav__link" href="#!">Rankings</a>
-                <a class="nav__link" href="#!">Connect a wallet</a>
-                <a class="nav__cta btn lg fill" href="#!">
+                <a class="nav__link" href="#marketplace">Marketplace</a>
+                <a class="nav__link" href="#rankings">Rankings</a>
+                <a class="nav__link" href="#wallet">Connect a wallet</a>
+                <a class="nav__cta btn btn--lg btn--fill" href="#!">
                     <img src="./assets/icon/user.svg" alt="user" />
                     <span>Sign Up</span>
                 </a>
@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="hero__cell">
-                    <a href="#!" class="hero__cta btn lg fill">
+                    <a href="#!" class="hero__cta btn btn--lg btn--fill">
                         <img src="./assets/icon/rocket.svg" alt="rocket" />
                         <span>Get Started</span>
                     </a>
@@ -105,7 +105,7 @@
             </section>
 
             <!-- trending -->
-            <section class="trending container">
+            <section id="marketplace" class="trending container">
                 <h2 class="trending__title heading-lv2">Trending Collection</h2>
                 <p class="trending__desc desc-lv1">Checkout our weekly updated trending collection.</p>
 
@@ -195,13 +195,13 @@
             </section>
 
             <!-- creator -->
-            <section class="creator container">
+            <section id="rankings" class="creator container">
                 <div class="creator__header">
                     <div>
                         <h2 class="heading-lv2">Top creators</h2>
                         <p class="desc-lv1">Checkout Top Rated Creators on the NFT Marketplace</p>
                     </div>
-                    <a href="#!" class="creator__header__btn btn lg outline">
+                    <a href="#!" class="creator__header__btn btn btn--lg btn--outline">
                         <img src="./assets/icon/rocket.svg" alt="rocket" />
                         <span>View Rankings</span>
                     </a>
@@ -378,7 +378,7 @@
                     </li>
                 </ol>
 
-                <a href="#!" class="creator__btn btn lg outline">
+                <a href="#!" class="creator__btn btn btn--lg btn--outline">
                     <img src="./assets/icon/rocket.svg" alt="rocket" />
                     <span>View Rankings</span>
                 </a>
@@ -478,7 +478,7 @@
                         <h2 class="heading-lv2">Discover More NFTs</h2>
                         <p class="desc-lv1">Explore new trending NFTs</p>
                     </div>
-                    <a href="#!" class="discover__header__btn btn lg outline">
+                    <a href="#!" class="discover__header__btn btn btn--lg btn--outline">
                         <img src="./assets/icon/eye.svg" alt="rocket" />
                         <span>See All</span>
                     </a>
@@ -565,7 +565,7 @@
                     </li>
                 </ul>
 
-                <a href="#!" class="discover__btn btn lg outline">
+                <a href="#!" class="discover__btn btn btn--lg btn--outline">
                     <img src="./assets/icon/eye.svg" alt="rocket" />
                     <span>See All</span>
                 </a>
@@ -580,7 +580,7 @@
                             <span>Shroomie</span>
                         </p>
                         <h2 class="highlight__title">Magic Mashrooms</h2>
-                        <a class="highlight__btn btn lg outline" href="#!">
+                        <a class="highlight__btn btn btn--lg btn--outline" href="#!">
                             <img src="./assets/icon/eye.svg" alt="eye" />
                             <span>See NFT</span>
                         </a>
@@ -604,7 +604,7 @@
                         </div>
                     </div>
 
-                    <a class="highlight__btn btn lg outline" href="#!">
+                    <a class="highlight__btn btn btn--lg btn--outline" href="#!">
                         <img src="./assets/icon/eye.svg" alt="eye" />
                         <span>See NFT</span>
                     </a>
@@ -612,7 +612,7 @@
             </section>
 
             <!-- works -->
-            <section class="works container">
+            <section id="wallet" class="works container">
                 <h2 class="heading-lv2">How it works</h2>
                 <p class="desc-lv1">Find out how to get started</p>
 
@@ -653,7 +653,9 @@
             <!-- subscribe -->
             <section class="subscribe">
                 <div class="subscribe__container container">
-                    <img class="subscribe__img" src="./assets/img/subscribe.png" alt="Join our weekly digest" />
+                    <div class="subscribe__content">
+                        <img class="subscribe__img" src="./assets/img/subscribe.png" alt="Join our weekly digest" />
+                    </div>
                     <div class="subscribe__content">
                         <h2 class="subscribe__title heading-lv2">Join our weekly digest</h2>
                         <p class="subscribe__desc desc-lv1">
@@ -665,7 +667,7 @@
                             method="post"
                         >
                             <input name="email" type="email" placeholder="Enter your email here" />
-                            <button class="btn lg fill" type="submit">
+                            <button class="btn btn--lg btn--fill" type="submit">
                                 <img src="./assets/icon/email.svg" alt="email" />
                                 <span>Subscribe</span>
                             </button>
@@ -709,7 +711,7 @@
                             method="post"
                         >
                             <input name="email" type="email" placeholder="Enter your email here" />
-                            <button class="btn lg fill" type="submit">
+                            <button class="btn btn--lg btn--fill" type="submit">
                                 <img src="./assets/icon/email.svg" alt="email" />
                                 <span>Subscribe</span>
                             </button>

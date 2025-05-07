@@ -146,6 +146,11 @@
         padding: 20px 20px 25px;
     }
 
+    .categoria__icon {
+        width: 80px;
+        height: 80px;
+    }
+
     /* discover */
     .discover__list {
         grid-template-columns: repeat(2, 1fr);
@@ -184,6 +189,9 @@
     }
 
     /* subscribe */
+    .subscribe__container.container {
+        gap: 30px;
+    }
     .subscribe .form__subscribe {
         gap: 16px;
         flex-direction: column;
@@ -327,6 +335,7 @@
     /* categorie */
     .categorie__list {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 
     /* discover */
@@ -344,6 +353,10 @@
 
     .discover__btn {
         display: flex;
+    }
+
+    .discover__body {
+        padding: 20px 20px 25px;
     }
 
     /* highlight */
@@ -401,7 +414,6 @@
         padding: 0;
         flex-direction: column;
         background-color: transparent;
-        gap: 30px;
     }
 
     .subscribe__container.container > * {
