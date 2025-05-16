@@ -62,56 +62,60 @@
     </main>
 
     <script>
-      const modal = document.getElementById("modal");
+      const modal = document.getElementById('modal');
       const searchInput = document.querySelector('input[type="search"]');
 
       let employees = [
-        { id: 1, name: "Pham Cong Tin", address: "Hoai Duc - Ha Noi", age: 25 },
-        { id: 2, name: "Nguyen Nam Tao", address: "Co Nhue - Ha Noi", age: 12 },
-        { id: 3, name: "Pham Xuan Bac", address: "Soc Son - Ha Noi", age: 34 },
-        {
-          id: 4,
-          name: "Tran Trong Nam",
-          address: "Long Bien - Ha Noi",
-          age: 18,
-        },
+        { id: 1, name: 'Pham Cong Tin', address: 'Hoai Duc - Ha Noi', age: 25 },
+        { id: 2, name: 'Nguyen Nam Tao', address: 'Co Nhue - Ha Noi', age: 12 },
+        { id: 3, name: 'Pham Xuan Bac', address: 'Soc Son - Ha Noi', age: 34 },
+        { id: 4, name: 'Tran Trong Nam', address: 'Long Bien - Ha Noi', age: 18 },
+        { id: 5, name: 'Le Thi Minh Chau', address: 'Thanh Xuan - Ha Noi', age: 28 },
+        { id: 6, name: 'Nguyen Van Manh', address: 'Ba Dinh - Ha Noi', age: 30 },
+        { id: 7, name: 'Pham Thi Hong Hanh', address: 'Cau Giay - Ha Noi', age: 24 },
+        { id: 8, name: 'Do Duy Anh', address: 'Hai Ba Trung - Ha Noi', age: 27 },
+        { id: 9, name: 'Bui Quoc Dat', address: 'Nam Tu Liem - Ha Noi', age: 33 },
+        { id: 10, name: 'Hoang Thi Lan', address: 'Dong Da - Ha Noi', age: 29 },
+        { id: 11, name: 'Tran Minh Hoang', address: 'Ha Dong - Ha Noi', age: 22 },
+        { id: 12, name: 'Nguyen Thi Bich Ngoc', address: 'Gia Lam - Ha Noi', age: 26 },
+        { id: 13, name: 'Vo Duy Khoa', address: 'Son Tay - Ha Noi', age: 31 },
+        { id: 14, name: 'Dang Thi Thuy Linh', address: 'Me Linh - Ha Noi', age: 21 },
+        { id: 15, name: 'Luong Tuan Kiet', address: 'Thanh Tri - Ha Noi', age: 35 },
       ];
 
       function nextId() {
-        return employees.length
-          ? Math.max(...employees.map((e) => e.id)) + 1
-          : 1;
+        return employees.length ? Math.max(...employees.map((e) => e.id)) + 1 : 1;
       }
 
       function sanitizeInput(input) {
         return String(input)
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#x27;")
-          .replace(/\//g, "&#x2F;")
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#x27;')
+          .replace(/\//g, '&#x2F;')
           .trim();
       }
 
-      function highlightKeyword(text, keyword = "") {
+      function highlightKeyword(text, keyword = '') {
         text = sanitizeInput(text);
         if (!keyword) return text;
 
-        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const regex = new RegExp(escapedKeyword, "gi");
+        const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(escapedKeyword, 'gi');
         return text.replace(regex, (match) => `<mark>${match}</mark>`);
       }
 
       function showModal() {
-        modal.classList.remove("hidden");
+        modal.classList.remove('hidden');
       }
 
       function hideModal() {
-        modal.classList.add("hidden");
+        modal.classList.add('hidden');
       }
 
-      function renderTBody(employees, searchKeyword = "") {
-        const tbody = document.querySelector("tbody");
+      function renderTBody(employees, searchKeyword = '') {
+        const tbody = document.querySelector('tbody');
         tbody.innerHTML = employees
           .map(
             (employee) => `
@@ -138,7 +142,7 @@
                 </td>
               </tr>`
           )
-          .join("");
+          .join('');
       }
 
       function getModalInputValues() {
@@ -147,27 +151,27 @@
         const ageInput = modal.querySelector('input[name="age"]');
 
         return {
-          name: sanitizeInput(nameInput?.value.trim()) || "",
-          address: sanitizeInput(addressInput?.value.trim()) || "",
-          age: sanitizeInput(ageInput?.value.trim()) || "",
+          name: sanitizeInput(nameInput?.value.trim()) || '',
+          address: sanitizeInput(addressInput?.value.trim()) || '',
+          age: sanitizeInput(ageInput?.value.trim()) || '',
         };
       }
 
       function validateInputs({ name, address, age }) {
         if (!name || !address || !age) {
-          alert("Please fill in all fields");
+          alert('Please fill in all fields');
           return false;
         }
         if (isNaN(Number(age)) || Number(age) <= 0) {
-          alert("Age must be a positive number");
+          alert('Age must be a positive number');
           return false;
         }
         return true;
       }
 
       function openAddModal() {
-        modal.querySelector(".modal-title").textContent = "Add Employee";
-        modal.querySelector(".modal-body").innerHTML = `
+        modal.querySelector('.modal-title').textContent = 'Add Employee';
+        modal.querySelector('.modal-body').innerHTML = `
           <div class="mt-2">
             <label for="name">Name:</label>
             <input class="border w-full mt-1 px-2 py-1" id="name" name="name" type="text">
@@ -182,10 +186,10 @@
           </div>
         `;
 
-        modal.querySelector(".modal-footer").innerHTML = `
+        modal.querySelector('.modal-footer').innerHTML = `
           <button
-              class="flex-1 p-2 cursor-pointer border"
-              onclick="hideModal()"
+            class="flex-1 p-2 cursor-pointer border"
+            onclick="hideModal()"
           >
             Cancel
           </button>
@@ -214,8 +218,8 @@
       }
       function openUpdateModal(employeeId) {
         const employee = employees.find((e) => e.id === employeeId);
-        modal.querySelector(".modal-title").textContent = "Edit Employee";
-        modal.querySelector(".modal-body").innerHTML = `
+        modal.querySelector('.modal-title').textContent = 'Edit Employee';
+        modal.querySelector('.modal-body').innerHTML = `
           <div class="mt-2">
             <label for="name">Name:</label>
             <input class="border w-full mt-1 px-2 py-1" id="name" name="name" type="text" value="${employee.name}">
@@ -230,7 +234,7 @@
           </div>
         `;
 
-        modal.querySelector(".modal-footer").innerHTML = `
+        modal.querySelector('.modal-footer').innerHTML = `
           <button
               class="flex-1 p-2 cursor-pointer border"
               onclick="hideModal()"
@@ -266,11 +270,11 @@
 
       function openDeleteModal(employeeId) {
         const employee = employees.find((e) => e.id === employeeId);
-        modal.querySelector(".modal-title").textContent = "Delete Employee";
-        modal.querySelector(".modal-body").innerHTML = `
+        modal.querySelector('.modal-title').textContent = 'Delete Employee';
+        modal.querySelector('.modal-body').innerHTML = `
           <p>Are you sure you want to delete <strong>${employee.name}</strong>?</p>
         `;
-        modal.querySelector(".modal-footer").innerHTML = `
+        modal.querySelector('.modal-footer').innerHTML = `
           <button
               class="flex-1 p-2 cursor-pointer border"
               onclick="hideModal()"
