@@ -28,6 +28,10 @@
       .animate-flash {
         animation: flash 1s ease-in-out;
       }
+
+      .hover-opacity:hover {
+        opacity: 0.5;
+      }
     </style>
   </head>
   <body>
@@ -40,7 +44,7 @@
           oninput="searchKeyword(this.value)"
         />
         <button
-          class="bg-black text-white p-2 cursor-pointer"
+          class="bg-black text-white p-2 cursor-pointer hover-opacity"
           onclick="openAddModal()"
         >
           Add Employee
@@ -131,7 +135,7 @@
         modal.classList.add('hidden');
       }
 
-      function renderTBody(employees, searchKeyword = '', highlightId = -1) {
+      function renderTBody(employees, searchKeyword = '', highlightId = null) {
         const tbody = document.querySelector('tbody');
         tbody.innerHTML = employees
           .map((employee) => {
@@ -150,11 +154,11 @@
                 </td>
                 <td class="p-2 text-center">
                   <i
-                    class="fa-solid fa-pen mr-4 text-xl cursor-pointer"
+                    class="fa-solid fa-pen mr-4 text-xl cursor-pointer hover-opacity"
                     onclick="openUpdateModal(${employee.id})"
                   ></i>
                   <i
-                    class="fa-solid fa-trash text-xl cursor-pointer"
+                    class="fa-solid fa-trash text-xl cursor-pointer hover-opacity"
                     onclick="openDeleteModal(${employee.id})"
                   ></i>
                 </td>
@@ -162,12 +166,12 @@
           })
           .join('');
 
-        // if (highlightId !== null) {
-        //   setTimeout(() => {
-        //     const row = tbody.querySelector(`tr.animate-flash`);
-        //     if (row) row.classList.remove('animate-flash');
-        //   }, 1500);
-        // }
+        if (highlightId !== null) {
+          setTimeout(() => {
+            const row = tbody.querySelector(`tr.animate-flash`);
+            if (row) row.classList.remove('animate-flash');
+          }, 1500);
+        }
       }
 
       function getModalInputValues() {
@@ -213,7 +217,7 @@
 
         modal.querySelector('.modal-footer').innerHTML = `
           <button
-            class="flex-1 p-2 cursor-pointer border"
+            class="flex-1 p-2 cursor-pointer border" 
             onclick="hideModal()"
           >
             Cancel
@@ -338,7 +342,7 @@
               priority = 1;
             } else if (e.address.toLowerCase().includes(keyword)) {
               priority = 2;
-            } else if (!isNaN(ageNum) && e.age === ageNum) {
+            } else if (e.age.toString().toLowerCase().includes(keyword)) {
               priority = 3;
             }
             return priority > 0 ? { employee: e, priority } : null;
