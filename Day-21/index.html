@@ -12,6 +12,23 @@
     />
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+      @keyframes flash {
+        0% {
+          background-color: #00000080;
+          color: #ffffff;
+        }
+        100% {
+          background-color: #ffffff;
+          color: #000000;
+        }
+      }
+
+      .animate-flash {
+        animation: flash 1s ease-in-out;
+      }
+    </style>
   </head>
   <body>
     <main class="max-w-4xl mx-auto pt-10 px-5">
@@ -114,12 +131,13 @@
         modal.classList.add('hidden');
       }
 
-      function renderTBody(employees, searchKeyword = '') {
+      function renderTBody(employees, searchKeyword = '', highlightId = -1) {
         const tbody = document.querySelector('tbody');
         tbody.innerHTML = employees
-          .map(
-            (employee) => `
-              <tr class="border-b">
+          .map((employee) => {
+            const highlightClass = highlightId === employee.id ? 'animate-flash' : '';
+            return `
+              <tr class="border-b ${highlightClass}">
                 <td class="p-2 text-center">${employee.id}</td>
                 <td class="p-2">
                   ${highlightKeyword(employee.name, searchKeyword)}
@@ -140,9 +158,16 @@
                     onclick="openDeleteModal(${employee.id})"
                   ></i>
                 </td>
-              </tr>`
-          )
+              </tr>`;
+          })
           .join('');
+
+        // if (highlightId !== null) {
+        //   setTimeout(() => {
+        //     const row = tbody.querySelector(`tr.animate-flash`);
+        //     if (row) row.classList.remove('animate-flash');
+        //   }, 1500);
+        // }
       }
 
       function getModalInputValues() {
@@ -210,15 +235,15 @@
         if (!validateInputs(values)) {
           return;
         }
-
-        employees.push({ id: nextId(), ...values, age: Number(values.age) });
+        const id = nextId();
+        employees.push({ id, ...values, age: Number(values.age) });
 
         hideModal();
-        renderTBody(employees);
+        renderTBody(employees, '', id);
       }
       function openUpdateModal(employeeId) {
         const employee = employees.find((e) => e.id === employeeId);
-        modal.querySelector('.modal-title').textContent = 'Edit Employee';
+        modal.querySelector('.modal-title').textContent = 'Update Employee';
         modal.querySelector('.modal-body').innerHTML = `
           <div class="mt-2">
             <label for="name">Name:</label>
@@ -265,7 +290,7 @@
         employee.age = Number(values.age);
 
         hideModal();
-        renderTBody(employees);
+        renderTBody(employees, '', employeeId);
       }
 
       function openDeleteModal(employeeId) {
