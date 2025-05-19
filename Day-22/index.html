@@ -173,6 +173,18 @@
       "Hue",
       "Bien Hoa",
       "Nha Trang",
+      "Vung Tau",
+      "Quang Ninh",
+      "Thanh Hoa",
+      "Nam Dinh",
+      "Thai Nguyen",
+      "Buon Ma Thuot",
+      "Rach Gia",
+      "My Tho",
+      "Long Xuyen",
+      "Cam Ranh",
+      "Pleiku",
+      "Ha Long"
     ];
 
     function nextId() {
@@ -450,6 +462,8 @@
       const cityInput = document.getElementById("city-input");
       const cityDropdown = document.getElementById("city-list");
 
+      let mouseEnterEnabled = true;
+
       let filteredCities = [...cityList];
       let selectedIndex = -1;
 
@@ -463,12 +477,16 @@
         renderCityList();
       }
 
+      cityDropdown.addEventListener("mousemove", () => {
+        mouseEnterEnabled = true;
+      });
+
       function renderCityList() {
         cityDropdown.innerHTML = filteredCities
           .map((city, index) => {
             return `
           <li role="option" data-index="${index}" 
-              class="cursor-pointer px-2 py-1 hover:bg-black hover:text-white
+              class="cursor-pointer px-2 py-1 
               ${index === selectedIndex ? " bg-black text-white" : ""}"
           >
               ${city}
@@ -485,9 +503,23 @@
           });
 
           li.addEventListener("mouseenter", () => {
-            selectedIndex = index;
-            renderCityList();
+            if (mouseEnterEnabled) {
+              selectedIndex = index;
+              updateHighlight();
+            }
           });
+        });
+      }
+
+      function updateHighlight() {
+        cityDropdown.querySelectorAll("li").forEach((li) => {
+          const idx = parseInt(li.dataset.index, 10);
+
+          if (idx === selectedIndex) {
+            li.classList.add("bg-black", "text-white");
+          } else {
+            li.classList.remove("bg-black", "text-white");
+          }
         });
 
         const activeItem = cityDropdown.querySelector(`li[data-index="${selectedIndex}"]`);
@@ -514,17 +546,19 @@
       }
 
       function handleCityKeyDown(key) {
+        mouseEnterEnabled = false;
+
         if (cityDropdown.classList.contains("hidden")) return;
         const maxIndex = filteredCities.length - 1;
 
         switch (key) {
           case "ArrowDown":
             selectedIndex = selectedIndex === maxIndex ? 0 : selectedIndex + 1;
-            renderCityList();
+            updateHighlight();
             break;
           case "ArrowUp":
             selectedIndex = selectedIndex <= 0 ? maxIndex : selectedIndex - 1;
-            renderCityList();
+            updateHighlight();
             break;
           case "Enter":
             chooseCity(selectedIndex);
