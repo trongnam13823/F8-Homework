@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Day-21</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    @keyframes flash {
+      0% {
+        background-color: #00000080;
+        color: #ffffff;
+      }
+
+      100% {
+        background-color: #ffffff;
+        color: #000000;
+      }
+    }
+
+    .animate-flash {
+      animation: flash 1s ease-in-out;
+    }
+
+    .hover-opacity:hover {
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="max-w-4xl mx-auto pt-10 px-5">
+    <div class="w-full flex gap-3">
+      <input class="border p-2 flex-1 outline-none" type="search" placeholder="Search"
+        oninput="searchKeyword(this.value)" />
+      <button class="bg-black text-white p-2 cursor-pointer hover-opacity" onclick="openAddModal()">
+        Add Employee
+      </button>
+    </div>
+
+    <table class="mt-5 w-full">
+      <thead>
+        <tr class="border-b">
+          <th class="p-2">ID</th>
+          <th class="p-2 text-left">Name</th>
+          <th class="p-2 text-left">Address</th>
+          <th class="p-2 text-left">City</th>
+          <th class="p-2">Age</th>
+          <th class="p-2">Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="fixed inset-0 bg-black/50 hidden" id="modal" onclick="hideModal()">
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5"
+        onclick="event.stopPropagation()">
+        <h2 class="modal-title text-center text-2xl font-bold"></h2>
+
+        <div class="modal-body mt-5"></div>
+
+        <div class="modal-footer mt-5 flex gap-2"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const searchInput = document.querySelector('input[type="search"]');
+
+    let employees = [
+      {
+        "id": 1,
+        "name": "Pham Cong Tin",
+        "address": "Hoai Duc",
+        "city": "Ha Noi",
+        "age": 25,
+        "searchStr": "pham cong tin|hoai duc|ha noi|25"
+      },
+      {
+        "id": 2,
+        "name": "Nguyen Nam Tao",
+        "address": "Co Nhue",
+        "city": "Ha Noi",
+        "age": 12,
+        "searchStr": "nguyen nam tao|co nhue|ha noi|12"
+      },
+      {
+        "id": 6,
+        "name": "Nguyen Van Manh",
+        "address": "Quan 1",
+        "city": "Ho Chi Minh",
+        "age": 30,
+        "searchStr": "nguyen van manh|quan 1|ho chi minh|30"
+      },
+      {
+        "id": 8,
+        "name": "Do Duy Anh",
+        "address": "Tan Binh",
+        "city": "Ho Chi Minh",
+        "age": 27,
+        "searchStr": "do duy anh|tan binh|ho chi minh|27"
+      },
+      {
+        "id": 9,
+        "name": "Bui Quoc Dat",
+        "address": "Hai Chau",
+        "city": "Da Nang",
+        "age": 33,
+        "searchStr": "bui quoc dat|hai chau|da nang|33"
+      },
+      {
+        "id": 10,
+        "name": "Hoang Thi Lan",
+        "address": "Thanh Khe",
+        "city": "Da Nang",
+        "age": 29,
+        "searchStr": "hoang thi lan|thanh khe|da nang|29"
+      },
+      {
+        "id": 11,
+        "name": "Tran Minh Hoang",
+        "address": "Hong Bang",
+        "city": "Hai Phong",
+        "age": 22,
+        "searchStr": "tran minh hoang|hong bang|hai phong|22"
+      },
+      {
+        "id": 12,
+        "name": "Nguyen Thi Bich Ngoc",
+        "address": "Le Chan",
+        "city": "Hai Phong",
+        "age": 26,
+        "searchStr": "nguyen thi bich ngoc|le chan|hai phong|26"
+      },
+      {
+        "id": 13,
+        "name": "Vo Duy Khoa",
+        "address": "Ninh Kieu",
+        "city": "Can Tho",
+        "age": 31,
+        "searchStr": "vo duy khoa|ninh kieu|can tho|31"
+      },
+      {
+        "id": 14,
+        "name": "Dang Thi Thuy Linh",
+        "address": "Phu Hoi",
+        "city": "Hue",
+        "age": 21,
+        "searchStr": "dang thi thuy linh|phu hoi|hue|21"
+      },
+      {
+        "id": 15,
+        "name": "Luong Tuan Kiet",
+        "address": "Loc Tho",
+        "city": "Khanh Hoa",
+        "age": 35,
+        "searchStr": "luong tuan kiet|loc tho|khanh hoa|35"
+      }
+    ]
+
+    const cityList = [
+      "Ha Noi",
+      "Ho Chi Minh",
+      "Da Nang",
+      "Hai Phong",
+      "Can Tho",
+      "Hue",
+      "Bien Hoa",
+      "Nha Trang",
+    ];
+
+    function nextId() {
+      return employees.length ? Math.max(...employees.map((e) => e.id)) + 1 : 1;
+    }
+
+    function sanitizeInput(input) {
+      return String(input)
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;')
+        .replace(/\//g, '&#x2F;')
+        .trim();
+    }
+
+    function highlightKeyword(text, keyword = '') {
+      text = sanitizeInput(text);
+      if (!keyword) return text;
+
+      const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(escapedKeyword, 'gi');
+      return text.replace(regex, (match) => `<mark>${match}</mark>`);
+    }
+
+    function showModal() {
+      modal.classList.remove('hidden');
+    }
+
+    function hideModal() {
+      modal.classList.add('hidden');
+    }
+
+    function renderTBody(employees, searchKeyword = '', highlightId = null) {
+      const tbody = document.querySelector('tbody');
+      tbody.innerHTML = employees
+        .map((employee) => {
+          const highlightClass = highlightId === employee.id ? 'animate-flash' : '';
+          return `
+              <tr class="border-b ${highlightClass}">
+                <td class="p-2 text-center">${employee.id}</td>
+                <td class="p-2">
+                  ${highlightKeyword(employee.name, searchKeyword)}
+                </td>
+                <td class="p-2">
+                  ${highlightKeyword(employee.address, searchKeyword)}
+                </td>
+                <td class="p-2">
+                  ${highlightKeyword(employee.city, searchKeyword)}
+                </td>
+                <td class="p-2 text-center">
+                  ${highlightKeyword(employee.age, searchKeyword)}
+                </td>
+                <td class="p-2 text-center">
+                  <i
+                    class="fa-solid fa-pen mr-4 text-xl cursor-pointer hover-opacity"
+                    onclick="openUpdateModal(${employee.id})"
+                  ></i>
+                  <i
+                    class="fa-solid fa-trash text-xl cursor-pointer hover-opacity"
+                    onclick="openDeleteModal(${employee.id})"
+                  ></i>
+                </td>
+              </tr>`;
+        })
+        .join('');
+
+      if (highlightId !== null) {
+        setTimeout(() => {
+          const row = tbody.querySelector(`tr.animate-flash`);
+          if (row) row.classList.remove('animate-flash');
+        }, 1500);
+      }
+    }
+
+    function getModalInputValues() {
+      const nameInput = modal.querySelector('input[name="name"]');
+      const addressInput = modal.querySelector('input[name="address"]');
+      const cityInput = modal.querySelector('input[name="city"]');
+      const ageInput = modal.querySelector('input[name="age"]');
+
+      return {
+        name: sanitizeInput(nameInput?.value.trim()) || '',
+        address: sanitizeInput(addressInput?.value.trim()) || '',
+        city: sanitizeInput(cityInput?.value.trim()) || '',
+        age: sanitizeInput(ageInput?.value.trim()) || '',
+      };
+    }
+
+    function validateInputs({ name, address, age, city }) {
+      if (!name || !address || !city || !age) {
+        alert('Please fill in all fields');
+        return false;
+      }
+      if (isNaN(Number(age)) || Number(age) <= 0) {
+        alert('Age must be a positive number');
+        return false;
+      }
+      return true;
+    }
+
+    function openAddModal() {
+      modal.querySelector('.modal-title').textContent = 'Add Employee';
+      modal.querySelector('.modal-body').innerHTML = `
+          <div class="mt-2">
+            <label for="name">Name:</label>
+            <input class="border w-full mt-1 px-2 py-1" id="name" name="name" type="text">
+          </div>
+          <div class="mt-2">
+            <label for="address">Address:</label>
+            <input class="border w-full mt-1 px-2 py-1" id="address" name="address" type="text">
+          </div>
+          <div class="mt-2 relative">
+            <label for="ctiy">City:</label>
+            <input type="text" id="city-input" name="city"
+              class="border w-full mt-1 px-2 py-1"
+              autocomplete="off" 
+            />
+            <ul id="city-list"
+                class="absolute z-10 mt-1 max-h-60 w-full overflow-auto border bg-white hidden"
+                role="listbox">
+            </ul>
+          </div>
+          <div class="mt-2">
+            <label for="age">Age:</label>
+            <input class="border w-full mt-1 px-2 py-1" id="age" name="age" type="number">
+          </div>
+        `;
+
+      modal.querySelector('.modal-footer').innerHTML = `
+          <button
+            class="flex-1 p-2 cursor-pointer border" 
+            onclick="hideModal()"
+          >
+            Cancel
+          </button>
+          <button
+            class="flex-1 cursor-pointer bg-black text-white p-2"
+            onclick="addEmployee()"
+          >
+            Save
+          </button>
+        `;
+
+      showModal();
+
+      setupCityDropdown();
+    }
+
+    function addEmployee() {
+      const values = getModalInputValues();
+
+      if (!validateInputs(values)) {
+        return;
+      }
+      const id = nextId();
+      employees.push({ id, ...values, age: Number(values.age), searchStr: Object.values(values).join('|').toLowerCase() });
+
+      hideModal();
+      renderTBody(employees, '', id);
+    }
+    function openUpdateModal(employeeId) {
+      const employee = employees.find((e) => e.id === employeeId);
+      modal.querySelector('.modal-title').textContent = 'Update Employee';
+      modal.querySelector('.modal-body').innerHTML = `
+          <div class="mt-2">
+            <label for="name">Name:</label>
+            <input class="border w-full mt-1 px-2 py-1" id="name" name="name" type="text" value="${employee.name}">
+          </div>
+          <div class="mt-2">
+            <label for="address">Address:</label>
+            <input class="border w-full mt-1 px-2 py-1" id="address" name="address" type="text" value="${employee.address}">
+          </div>
+          <div class="mt-2 relative">
+            <label for="ctiy">City:</label>
+            <input type="text" id="city-input" name="city" value="${employee.city}"
+              class="border w-full mt-1 px-2 py-1"
+              autocomplete="off" 
+            />
+            <ul id="city-list"
+                class="absolute z-10 mt-1 max-h-60 w-full overflow-auto border bg-white hidden"
+                role="listbox">
+            </ul>
+          </div>
+          <div class="mt-2">
+            <label for="age">Age:</label>
+            <input class="border w-full mt-1 px-2 py-1" id="age" name="age" type="number" value="${employee.age}">
+          </div>
+        `;
+
+      modal.querySelector('.modal-footer').innerHTML = `
+          <button
+              class="flex-1 p-2 cursor-pointer border"
+              onclick="hideModal()"
+          >
+            Cancel
+          </button>
+          <button
+            class="flex-1 cursor-pointer bg-black text-white p-2"
+            onclick="updateEmployee(${employeeId})"
+          >
+            Save
+          </button>
+        `;
+
+      showModal();
+
+      setupCityDropdown()
+    }
+
+    function updateEmployee(employeeId) {
+      const values = getModalInputValues();
+
+      if (!validateInputs(values)) {
+        return;
+      }
+
+      const employee = employees.find((e) => e.id === employeeId);
+      employee.name = values.name;
+      employee.address = values.address;
+      employee.city = values.city
+      employee.age = Number(values.age);
+      employee.searchStr = Object.values(values).join('|').toLowerCase()
+
+      hideModal();
+      renderTBody(employees, '', employeeId);
+    }
+
+    function openDeleteModal(employeeId) {
+      const employee = employees.find((e) => e.id === employeeId);
+      modal.querySelector('.modal-title').textContent = 'Delete Employee';
+      modal.querySelector('.modal-body').innerHTML = `
+          <p>Are you sure you want to delete <strong>${employee.name}</strong>?</p>
+        `;
+      modal.querySelector('.modal-footer').innerHTML = `
+          <button
+              class="flex-1 p-2 cursor-pointer border"
+              onclick="hideModal()"
+          >
+            Cancel
+          </button>
+          <button
+            class="flex-1 cursor-pointer bg-black text-white p-2"
+            onclick="deleteEmployee(${employeeId})"
+          >
+            Delete
+          </button>
+        `;
+
+      showModal();
+    }
+
+    function deleteEmployee(employeeId) {
+      employees = employees.filter((e) => e.id !== employeeId);
+
+      hideModal();
+      renderTBody(employees);
+    }
+
+    function searchKeyword(keyword) {
+      if (!keyword) {
+        renderTBody(employees);
+        return;
+      }
+
+      const ageNum = Number(keyword);
+      const filtered = employees.filter(e => e.searchStr.includes(keyword.toLowerCase()))
+
+      renderTBody(filtered, keyword);
+    }
+
+    renderTBody(employees);
+
+    function setupCityDropdown() {
+      const cityInput = document.getElementById("city-input");
+      const cityDropdown = document.getElementById("city-list");
+
+      let filteredCities = [...cityList];
+      let selectedIndex = -1;
+
+      function hideCityList() {
+        cityDropdown.classList.add("hidden");
+        selectedIndex = -1;
+      }
+
+      function showCityList() {
+        cityDropdown.classList.remove("hidden");
+        renderCityList();
+      }
+
+      function renderCityList() {
+        cityDropdown.innerHTML = filteredCities
+          .map((city, index) => {
+            return `
+          <li role="option" data-index="${index}" 
+              class="cursor-pointer px-2 py-1 hover:bg-black hover:text-white
+              ${index === selectedIndex ? " bg-black text-white" : ""}"
+          >
+              ${city}
+          </li>`;
+          })
+          .join("");
+
+        cityDropdown.querySelectorAll("li").forEach((li) => {
+          const index = parseInt(li.dataset.index, 10);
+
+          li.addEventListener("mousedown", () => {
+            chooseCity(index);
+            hideCityList();
+          });
+
+          li.addEventListener("mouseenter", () => {
+            selectedIndex = index;
+            renderCityList();
+          });
+        });
+
+        const activeItem = cityDropdown.querySelector(`li[data-index="${selectedIndex}"]`);
+        if (activeItem) {
+          activeItem.scrollIntoView({ block: "nearest" });
+        }
+      }
+
+      function chooseCity(index) {
+        if (index >= 0 && index < filteredCities.length) {
+          cityInput.value = filteredCities[index];
+          hideCityList();
+        }
+      }
+
+      function filterCities(keyword) {
+        filteredCities = cityList.filter((city) =>
+          city.toLowerCase().includes(keyword.toLowerCase())
+        );
+        selectedIndex = -1;
+
+        showCityList()
+        renderCityList();
+      }
+
+      function handleCityKeyDown(key) {
+        if (cityDropdown.classList.contains("hidden")) return;
+        const maxIndex = filteredCities.length - 1;
+
+        switch (key) {
+          case "ArrowDown":
+            selectedIndex = selectedIndex === maxIndex ? 0 : selectedIndex + 1;
+            renderCityList();
+            break;
+          case "ArrowUp":
+            selectedIndex = selectedIndex <= 0 ? maxIndex : selectedIndex - 1;
+            renderCityList();
+            break;
+          case "Enter":
+            chooseCity(selectedIndex);
+            break;
+          case "Escape":
+            hideCityList();
+            break;
+        }
+      }
+
+      cityInput.onfocus = showCityList;
+      cityInput.onblur = hideCityList;
+      cityInput.oninput = (e) => filterCities(e.target.value);
+      cityInput.onkeydown = (e) => handleCityKeyDown(e.key);
+    }
+  </script>
+</body>
+
+</html>
