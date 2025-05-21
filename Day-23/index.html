@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Máy tính đơn giản</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .btn {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            transition: transform 150ms;
+            user-select: none;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        @keyframes blinkRed {
+
+            0%,
+            100% {
+                background-color: #f87171;
+            }
+
+            50% {
+                background-color: #fca5a5;
+            }
+        }
+
+        .error {
+            animation: blinkRed 0.25s ease-in-out;
+            border-color: #b91c1c !important;
+            color: #b91c1c !important;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gray-100 mx-6">
+    <div class="w-[400px] bg-white p-6 rounded shadow">
+        <input id="screen" type="text" name="expression" placeholder="0" readonly
+            class="w-full text-5xl border border-gray-300 px-6 py-4 mb-6 rounded bg-gray-50" />
+
+        <div class="grid grid-cols-4 gap-3">
+            <button class="btn bg-red-300 col-span-2" onclick="clearScreen()">C</button>
+            <button class="btn bg-yellow-300 col-span-2" onclick="deleteLast()">Del</button>
+
+            <button class="btn bg-gray-200" onclick="insertText(this)">7</button>
+            <button class="btn bg-gray-200" onclick="insertText(this)">8</button>
+            <button class="btn bg-gray-200" onclick="insertText(this)">9</button>
+            <button class="btn bg-orange-300" onclick="insertText(this)">/</button>
+
+            <button class="btn bg-gray-200" onclick="insertText(this)">4</button>
+            <button class="btn bg-gray-200" onclick="insertText(this)">5</button>
+            <button class="btn bg-gray-200" onclick="insertText(this)">6</button>
+            <button class="btn bg-orange-300" onclick="insertText(this)">*</button>
+
+            <button class="btn bg-gray-200" onclick="insertText(this)">1</button>
+            <button class="btn bg-gray-200" onclick="insertText(this)">2</button>
+            <button class="btn bg-gray-200" onclick="insertText(this)">3</button>
+            <button class="btn bg-orange-300" onclick="insertText(this)">-</button>
+
+            <button class="btn bg-gray-200" onclick="insertText(this)">0</button>
+            <button class="btn bg-gray-200" onclick="insertText(this)">.</button>
+            <button id="btnEqual" class="btn bg-green-400 col-span-1" onclick="calcResult()">=</button>
+            <button class="btn bg-orange-300" onclick="insertText(this)">+</button>
+        </div>
+    </div>
+
+    <script>
+        const screen = document.getElementById("screen");
+        const btnEqual = document.getElementById("btnEqual");
+
+        function updateScroll() {
+            screen.scrollLeft = screen.scrollWidth;
+        }
+
+        function insertText(ele) {
+            screen.value += ele.textContent;
+            updateScroll();
+        }
+
+        function clearScreen() {
+            screen.value = '';
+            updateScroll();
+        }
+
+        function deleteLast() {
+            screen.value = screen.value.slice(0, -1);
+            updateScroll();
+        }
+
+        // Hàm tính toán 
+        function calc(text) {
+            text = text.trim();
+
+            for (const op of ["+", "-", "*", "/"]) {
+                const i = text.indexOf(op);
+                if (i > 0) {
+                    const a = calc(text.slice(0, i));
+                    const b = calc(text.slice(i + 1));
+
+                    return {
+                        "+": a + b,
+                        "-": a - b,
+                        "*": a * b,
+                        "/": a / b
+                    }[op];
+                }
+            }
+
+            return Number(text || NaN);
+        }
+
+        // Xử lý khi nhấn =
+        function calcResult() {
+            const result = calc(screen.value);
+
+            if (!isFinite(result)) {
+                showErrorFeedback();
+            } else {
+                screen.value = result;
+                updateScroll();
+            }
+        }
+
+        // Hiệu ứng báo lỗi
+        function showErrorFeedback() {
+            screen.classList.add("error");
+            btnEqual.disabled = true;
+
+            const handleAnimationEnd = () => {
+                screen.classList.remove("error");
+                btnEqual.disabled = false;
+                screen.removeEventListener("animationend", handleAnimationEnd);
+            };
+
+            screen.addEventListener("animationend", handleAnimationEnd);
+        }
+    </script>
+</body>
+
+</html>
