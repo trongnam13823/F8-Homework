@@ -127,7 +127,7 @@
             if (!isFinite(result)) {
                 showErrorFeedback();
             } else {
-                screen.value = result;
+                screen.value = result.toFixed(9);
                 updateScroll();
             }
         }
