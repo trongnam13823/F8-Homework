@@ -50,102 +50,32 @@
             class="w-full text-5xl border border-gray-300 px-6 py-4 mb-6 rounded bg-gray-50 text-right" />
 
         <div class="grid grid-cols-4 gap-3">
-            <button class="btn bg-red-300 col-span-2" onclick="clearScreen()">C</button>
-            <button class="btn bg-yellow-300 col-span-2" onclick="deleteLast()">Del</button>
+            <button class="btn btnClear bg-red-300 col-span-2">C</button>
+            <button class="btn btnDeleteLast bg-yellow-300 col-span-2">Del</button>
 
-            <button class="btn bg-gray-200" onclick="insertText(this)">7</button>
-            <button class="btn bg-gray-200" onclick="insertText(this)">8</button>
-            <button class="btn bg-gray-200" onclick="insertText(this)">9</button>
-            <button class="btn bg-orange-300" onclick="insertText(this)">/</button>
+            <button class="btn bg-gray-200">7</button>
+            <button class="btn bg-gray-200">8</button>
+            <button class="btn bg-gray-200">9</button>
+            <button class="btn bg-orange-300">/</button>
 
-            <button class="btn bg-gray-200" onclick="insertText(this)">4</button>
-            <button class="btn bg-gray-200" onclick="insertText(this)">5</button>
-            <button class="btn bg-gray-200" onclick="insertText(this)">6</button>
-            <button class="btn bg-orange-300" onclick="insertText(this)">*</button>
+            <button class="btn bg-gray-200">4</button>
+            <button class="btn bg-gray-200">5</button>
+            <button class="btn bg-gray-200">6</button>
+            <button class="btn bg-orange-300">*</button>
 
-            <button class="btn bg-gray-200" onclick="insertText(this)">1</button>
-            <button class="btn bg-gray-200" onclick="insertText(this)">2</button>
-            <button class="btn bg-gray-200" onclick="insertText(this)">3</button>
-            <button class="btn bg-orange-300" onclick="insertText(this)">-</button>
+            <button class="btn bg-gray-200">1</button>
+            <button class="btn bg-gray-200">2</button>
+            <button class="btn bg-gray-200">3</button>
+            <button class="btn bg-orange-300">-</button>
 
-            <button class="btn bg-gray-200" onclick="insertText(this)">0</button>
-            <button class="btn bg-gray-200" onclick="insertText(this)">.</button>
-            <button id="btnEqual" class="btn bg-green-400 col-span-1" onclick="calcResult()">=</button>
-            <button class="btn bg-orange-300" onclick="insertText(this)">+</button>
+            <button class="btn bg-gray-200">0</button>
+            <button class="btn bg-gray-200">.</button>
+            <button id="btnEqual" class="btn btnEqual bg-green-400 col-span-1">=</button>
+            <button class="btn bg-orange-300">+</button>
         </div>
     </div>
 
-    <script>
-        const screen = document.getElementById("screen");
-        const btnEqual = document.getElementById("btnEqual");
-
-        function updateScroll() {
-            screen.scrollLeft = screen.scrollWidth;
-        }
-
-        function insertText(ele) {
-            screen.value += ele.textContent;
-            updateScroll();
-        }
-
-        function clearScreen() {
-            screen.value = '';
-            updateScroll();
-        }
-
-        function deleteLast() {
-            screen.value = screen.value.slice(0, -1);
-            updateScroll();
-        }
-
-        // Hàm tính toán 
-        function calc(text) {
-            text = text.trim();
-
-            for (const op of ["+", "-", "*", "/"]) {
-                const i = text.indexOf(op);
-                if (i > 0) {
-                    const a = calc(text.slice(0, i));
-                    const b = calc(text.slice(i + 1));
-
-                    return {
-                        "+": a + b,
-                        "-": a - b,
-                        "*": a * b,
-                        "/": a / b
-                    }[op];
-                }
-            }
-
-            return Number(text || NaN);
-        }
-
-        // Xử lý khi nhấn =
-        function calcResult() {
-            const result = calc(screen.value);
-
-            if (!isFinite(result)) {
-                showErrorFeedback();
-            } else {
-                screen.value = Number(result.toFixed(6));
-                screen.scrollLeft = 0;
-            }
-        }
-
-        // Hiệu ứng báo lỗi
-        function showErrorFeedback() {
-            screen.classList.add("error");
-            btnEqual.disabled = true;
-
-            const handleAnimationEnd = () => {
-                screen.classList.remove("error");
-                btnEqual.disabled = false;
-                screen.removeEventListener("animationend", handleAnimationEnd);
-            };
-
-            screen.addEventListener("animationend", handleAnimationEnd);
-        }
-    </script>
+    <script type="module" src="./main.js"></script>
 </body>
 
 </html>
