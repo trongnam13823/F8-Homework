@@ -170,10 +170,10 @@ export const questions = [
             answer: "B",
         },
         {
-            question: "Con vật nào là bạn của con người?",
+            question: "Con vật nào là bạn, không phải đồ ăn?",
             options: [
                 { id: "A", text: "Chó" },
-                { id: "B", text: "Mèo" },
+                { id: "B", text: "Gà" },
                 { id: "C", text: "Chim" },
                 { id: "D", text: "Cá" },
             ],
