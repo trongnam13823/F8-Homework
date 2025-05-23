@@ -1388,7 +1388,7 @@ export const questions = [
     // Bộ 14: Rất khó
     [
         {
-            question: "  của Nam Phi là gì?",
+            question: "Thủ đô của Nam Phi là gì?",
             options: [
                 { id: "A", text: "Cape Town" },
                 { id: "B", text: "Pretoria" },
