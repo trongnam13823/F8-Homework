@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Ai là triệu phú - Đen trắng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="title">Ai là triệu phú</h1>
+    <div class="container">
+        <div class="main-content">
+            <div class="help-buttons">
+                <button id="remove-two-wrong-answers" class="help-button">Loại bỏ 2 đáp án sai</button>
+                <button id="ask-audience" class="help-button">Hỏi ý kiến khán giả</button>
+                <button id="call-friend" class="help-button">Gọi điện hỏi người thân</button>
+                <button id="ask-expert" class="help-button">Tư vấn chuyên gia</button>
+            </div>
+
+            <div class="question-container">
+                <div class="question-header" id="question-header">
+                    <div id="question-number"></div>
+                    <div class="question-timer" id="question-timer"></div>
+                </div>
+                <div class="question-text" id="question-text"></div>
+            </div>
+
+            <div class="answer-buttons">
+                <button class="answer-button" data-answer="A"></button>
+                <button class="answer-button" data-answer="B"></button>
+                <button class="answer-button" data-answer="C"></button>
+                <button class="answer-button" data-answer="D"></button>
+            </div>
+
+            <div class="action-buttons">
+                <button id="start-button" class="action-button">
+                    Bắt đầu
+                </button>
+                <button id="final-answer-button" class="action-button d-none">
+                    Đây là câu trả lời cuối cùng của tôi
+                </button>
+                <button id="stop-button" class="action-button stop-button d-none">Dừng Cuộc chơi</button>
+                <button id="continue-button" class="action-button d-none">Tiếp tục</button>
+                <button id="replay-button" class="action-button d-none">Chơi lại</button>
+            </div>
+
+            <p id="prize" class="prize-message d-none">
+                <span class="prizes-text"></span>
+                <span><span class="prize-amount"></span>đ</span>
+            </p>
+        </div>
+        <div id="milestone-container" class="milestone-container"></div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+</body>
+
+</html>
