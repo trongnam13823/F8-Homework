@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiem Tra DOM</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css"
+        integrity="sha512-/k658G6UsCvbkGRB3vPXpsPHgWeduJwiWGPCGS14IQw3xpr63AEMdA8nMYG2gmYkXitQxDTn6iiK/2fD4T87qA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 100px auto;
+            padding: 0 20px;
+            font-family: system-ui;
+        }
+
+        .schedule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .schedule-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input,
+        .team-select,
+        .create-schedule-btn {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .create-schedule-btn {
+            color: white;
+            background-color: green;
+            border: none;
+        }
+
+        .create-schedule-btn:hover {
+            opacity: 0.8;
+        }
+
+        option,
+        button,
+        select {
+            cursor: pointer;
+        }
+
+        .team-select {
+            background-color: white;
+            color: black;
+        }
+
+        .schedule-table {
+            border-collapse: collapse;
+        }
+
+        .schedule-table {
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 10px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+
+        tr {
+            border-bottom: 1px solid black;
+        }
+
+        .mdi-calendar-remove {
+            color: orange;
+            font-size: 20px;
+        }
+
+        .mdi-office-building-outline {
+            color: green;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <div class="schedule-header">
+            <div class="schedule-controls">
+                <input type="search" id="search-input" class="search-input" placeholder="Search employees"
+                    oninput="handleSearch(value)">
+                <select id="team-select" class="team-select" onchange="handleTeamSelect(value)"></select>
+            </div>
+            <button class="create-schedule-btn">Create Schedule</button>
+        </div>
+
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Team</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+
+    <script>
+        const employees = [
+            { id: 1, name: "Nguyen Minh Viet", teamId: 1 },
+            { id: 2, name: "Tran Thuy Quynh", teamId: 2 },
+            { id: 3, name: "Tran Cong Tin", teamId: 1 },
+            { id: 4, name: "Nguyen Nam Tao", teamId: 2 },
+            { id: 5, name: "Bui Kong Minh", teamId: 3 }
+        ];
+
+        const teams = [
+            { id: 1, name: "Reactjs" },
+            { id: 2, name: "Expressjs" },
+            { id: 3, name: "Nestjs" }
+        ];
+
+        const absences = [
+            { id: 1, employeeId: 1, date: "mon", time: "8:00-9:00" },
+            { id: 2, employeeId: 1, date: "tue", time: "16:00-17:00" },
+            { id: 3, employeeId: 3, date: "thu", time: "11:00-12:00" },
+            { id: 4, employeeId: 2, date: "wed", time: "11:00-12:00" },
+            { id: 5, employeeId: 5, date: "fri", time: "9:00-11:00" },
+            { id: 6, employeeId: 3, date: "mon", time: "8:00-9:00" }
+        ];
+
+        const employeesMapById = employees.reduce((acc, curr) => {
+            acc[curr.id] = curr
+            return acc
+        }, {})
+
+        const teamsMapById = teams.reduce((acc, curr) => {
+            acc[curr.id] = curr
+            return acc
+        }, {})
+
+        const absencesMapByEmployeeId = absences.reduce((acc, curr) => {
+            const employee = employeesMapById[curr.employeeId]
+            const team = teamsMapById[employee.teamId]
+
+            if (acc[curr.employeeId] === undefined) {
+                acc[curr.employeeId] = {
+                    name: employee.name,
+                    team: team.name,
+                    [curr.date]: curr.time
+                }
+            } else {
+                acc[curr.employeeId][curr.date] = curr.time
+            }
+
+            return acc
+        }, {})
+
+        const tableData = employees.map((employee) => {
+            return absencesMapByEmployeeId[employee.id] || {
+                name: employee.name,
+                team: teamsMapById[employee.teamId].name
+            }
+        })
+
+        const tbody = document.querySelector('.schedule-table tbody');
+        const teamSelect = document.getElementById('team-select')
+        const searchInput = document.getElementById('search-input')
+
+        function sanitizeInput(input) {
+            return String(input)
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#x27;')
+                .replace(/\//g, '&#x2F;')
+                .trim();
+        }
+
+        function renderTBody(tableData = []) {
+            tbody.innerHTML = tableData.map((data) => {
+                const fullDayHTML = '<span class="mdi mdi-office-building-outline"></span> Full Day'
+                const absencesIcon = '<span class="mdi mdi-calendar-remove"></span>'
+
+                return `
+                    <tr>
+                        <td class="text-center">${sanitizeInput(data.name)}</td>
+                        <td class="text-center">${sanitizeInput(data.team)}</td>
+                        <td>${data?.mon ? `${absencesIcon} ${data?.mon}` : fullDayHTML}</td>
+                        <td>${data?.tue ? `${absencesIcon} ${data?.tue}` : fullDayHTML}</td>
+                        <td>${data?.wed ? `${absencesIcon} ${data?.wed}` : fullDayHTML}</td>
+                        <td>${data?.thu ? `${absencesIcon} ${data?.thu}` : fullDayHTML}</td>
+                        <td>${data?.fri ? `${absencesIcon} ${data?.fri}` : fullDayHTML}</td>
+                    </tr>
+                `
+            }).join('')
+        }
+
+        function renderTeamSelect(teams = []) {
+            teamSelect.innerHTML = '<option value="" selected>All Teams</option>'
+
+            teamSelect.innerHTML += teams.map((team) => {
+                return `
+                    <option value="${team.name}">Team ${team.name}</option>
+                `
+            }).join('')
+        }
+
+        function handleFilterData({ name = searchInput.value, team = teamSelect.value }) {
+            return tableData.filter((data) => data.name.toLowerCase().includes(name.toLowerCase()) && data.team.includes(team))
+        }
+
+        function handleSearch(name) {
+            renderTBody(handleFilterData({ name }))
+        }
+
+        function handleTeamSelect(team) {
+            renderTBody(handleFilterData({ team }))
+        }
+
+        renderTBody(tableData)
+        renderTeamSelect(teams)
+    </script>
+</body>
+
+</html>
