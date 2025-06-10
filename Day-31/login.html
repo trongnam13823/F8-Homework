@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script>
+      if (localStorage.getItem("access")) window.location.href = "./index.html";
+    </script>
+  </head>
+  <body>
+    <form class="login" id="login-form">
+      <h2>Welcome, User!</h2>
+      <p>Please log in</p>
+      <input type="email" id="email" placeholder="Email" value="admin@gmail.com" required />
+      <input type="password" id="password" placeholder="Password" value="12345678" required />
+      <button type="submit" class="log-in">Log In</button>
+      <div id="error-msg"></div>
+    </form>
+
+    <script src="http.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>
