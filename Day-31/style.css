@@ -23,7 +23,7 @@
 
 .login input[type="email"]:hover,
 .login input[type="password"]:hover {
-  border-color: #f44336;
+  border-color: blue;
   outline: none;
 }
 
@@ -31,7 +31,7 @@
   width: 100%;
   height: 48px;
   border: none;
-  background: #ef5350;
+  background: blue;
   color: white;
   font-weight: bold;
   margin: 20px 0px;
@@ -40,12 +40,12 @@
 }
 
 .log-in:hover {
-  background: #f44336;
+  background: blue;
 }
 
 .login h2 {
   margin: 20px 0 0;
-  color: #ef5350;
+  color: blue;
   font-size: 28px;
   text-align: center;
 }

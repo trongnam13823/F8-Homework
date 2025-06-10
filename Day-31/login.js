@@ -5,18 +5,13 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
   const errorMsg = document.getElementById("error-msg");
 
-  if (!email || !password || password.length < 6) {
-    errorMsg.textContent = "Vui lòng nhập đầy đủ email và mật khẩu hợp lệ.";
-    return;
-  }
+  try {
+    const { access, refresh } = await http.post(`/login/`, { email, password });
 
-  const { access, refresh, detail } = await http.post(`/login/`, { email, password });
-
-  if (access && refresh) {
     localStorage.setItem("access", access);
     localStorage.setItem("refresh", refresh);
     window.location.href = "./index.html";
-  } else {
-    errorMsg.textContent = detail || "Login failed, please try again.";
+  } catch (error) {
+    errorMsg.textContent = error.message || "Login failed, please try again.";
   }
 });

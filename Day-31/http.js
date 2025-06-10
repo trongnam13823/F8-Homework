@@ -75,5 +75,13 @@ http.middleware.res(async (res, { url, opts }) => {
 
 // Middleware RES: 2. parse JSON response
 http.middleware.res(async (res) => {
-  return res instanceof Response ? await res.json() : res;
+  const data = res instanceof Response ? await res.json() : res;
+
+  if (!res.ok) {
+    const error = new Error(data.detail || "Something went wrong");
+    error.status = res.status;
+    throw error;
+  }
+
+  return data;
 });
