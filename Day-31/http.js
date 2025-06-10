@@ -10,14 +10,14 @@ const http = {
   },
 
   async fetch(url, opts = {}) {
-    let cfg = { url, ...opts };
+    let cfg = { url: BASE_URL + url, ...opts };
 
     // Chạy các request middleware
     for (const mw of this.reqMiddleware) {
       cfg = mw(cfg) || cfg;
     }
 
-    let res = await fetch(BASE_URL + cfg.url, cfg);
+    let res = await fetch(url, cfg);
 
     // Chạy các response middleware tuần tự
     for (const mw of this.resMiddleware) {
@@ -71,7 +71,7 @@ http.middleware.res(async (res, { url, ...opts }) => {
     };
 
     // Gọi lại request ban đầu với token mới
-    return await fetch(BASE_URL + url, opts);
+    return await fetch(url, opts);
 
     // Đăng xuất nếu refresh token không được
   } catch (error) {
