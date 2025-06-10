@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Todos app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+      }
+
+      body {
+        background-color: #8758ff;
+      }
+
+      .container {
+        position: relative;
+        display: block;
+        width: 450px;
+        text-align: center;
+        background-color: #1a1a40;
+        color: #ffffff;
+        border-radius: 5px;
+        margin: 80px auto 0;
+        padding: 32px;
+      }
+
+      h1 {
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .todo-form {
+        width: 100%;
+      }
+
+      .add-todo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 32px;
+        margin-top: 24px;
+      }
+
+      .todo-input {
+        background: none;
+        color: #fff;
+        border: 1px solid #8758ff;
+        outline: none;
+        padding: 8px 16px;
+        width: 300px;
+      }
+
+      .todo-item {
+        background-color: #8758ff;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 16px;
+        padding: 12px 16px;
+        border-radius: 5px;
+      }
+
+      .todo-title {
+        flex: 1;
+        font-size: 16px;
+        font-weight: 400;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .add-btn {
+        cursor: pointer;
+        background-color: #8758ff;
+        color: #ffffff;
+        border: none;
+        padding: 9px;
+      }
+
+      .edit-btn,
+      .del-btn {
+        cursor: pointer;
+        background-color: transparent;
+        color: #ffffff;
+        font-size: 16px;
+        border: none;
+      }
+
+      .edit-btn {
+        margin-left: auto;
+        margin-right: 12px;
+      }
+
+      .completed {
+        text-decoration: line-through;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      #loading {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #loading::after {
+        content: "";
+        width: 24px;
+        height: 24px;
+        border: 4px solid #fff;
+        border-top: 4px solid transparent;
+        border-radius: 50%;
+        display: inline-block;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Get Things Done !</h1>
+      <form class="todo-form">
+        <div class="add-todo">
+          <input
+            type="text"
+            class="todo-input"
+            placeholder="What is the task today?"
+          />
+          <button type="submit" class="add-btn" id="add-todo-btn">
+            Add Task
+          </button>
+        </div>
+        <div class="todo-list"></div>
+        <div id="loading"></div>
+      </form>
+    </div>
+
+    <script>
+      const API_URL = "https://api-todolist-multiuser.onrender.com/Nam/todos";
+      const ELEMENTS = {
+        todoList: document.querySelector(".todo-list"),
+        form: document.querySelector(".todo-form"),
+        input: document.querySelector(".todo-input"),
+        loading: document.getElementById("loading"),
+      };
+      const ERROR_MESSAGES = {
+        fetch: "Không thể tải danh sách công việc.",
+        add: "Không thể thêm công việc.",
+        update: "Không thể cập nhật công việc.",
+        delete: "Không thể xóa công việc.",
+        emptyInput: "Vui lòng nhập nội dung công việc.",
+      };
+
+      const apiService = {
+        async getTodos() {
+          return this.fetchWithLoading(() =>
+            fetch(API_URL).then((res) => res.json())
+          );
+        },
+        async addTodo(title) {
+          return this.fetchWithLoading(() =>
+            fetch(API_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ title, completed: false }),
+            })
+          );
+        },
+        async updateTodo(id, title, completed) {
+          return this.fetchWithLoading(() =>
+            fetch(`${API_URL}/${id}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ title, completed }),
+            })
+          );
+        },
+        async deleteTodo(id) {
+          await this.fetchWithLoading(() =>
+            fetch(`${API_URL}/${id}`, { method: "DELETE" })
+          );
+        },
+        async fetchWithLoading(fetchFn) {
+          ELEMENTS.loading.style.display = "flex";
+          try {
+            return await fetchFn();
+          } catch (err) {
+            throw err;
+          } finally {
+            ELEMENTS.loading.style.display = "none";
+          }
+        },
+      };
+
+      function createTodoElement({ id, title, completed }) {
+        const item = document.createElement("div");
+        item.className = "todo-item";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = completed;
+        checkbox.id = `todo-${id}`;
+        checkbox.addEventListener("change", () =>
+          handleToggleComplete(id, title, checkbox.checked)
+        );
+
+        const label = document.createElement("label");
+        label.className = "todo-title";
+        label.setAttribute("for", `todo-${id}`);
+        if (completed) label.classList.add("completed");
+        label.textContent = title;
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "del-btn fa-solid fa-trash";
+        delBtn.type = "button";
+        delBtn.addEventListener("click", () => handleDeleteTodo(id));
+
+        item.append(checkbox, label, delBtn);
+        return item;
+      }
+
+      function renderTodos(todos) {
+        ELEMENTS.todoList.innerHTML = "";
+        todos.forEach((todo) =>
+          ELEMENTS.todoList.appendChild(createTodoElement(todo))
+        );
+      }
+
+      async function handleAddTodo(e) {
+        e.preventDefault();
+        const value = ELEMENTS.input.value.trim();
+
+        if (!value) {
+          alert(ERROR_MESSAGES.emptyInput);
+          return;
+        }
+
+        try {
+          await apiService.addTodo(value);
+          ELEMENTS.input.value = "";
+          ELEMENTS.input.focus();
+          await fetchAndRenderTodos();
+        } catch (err) {
+          alert(ERROR_MESSAGES.add);
+        }
+      }
+
+      async function handleToggleComplete(id, title, completed) {
+        try {
+          await apiService.updateTodo(id, title, completed);
+          await fetchAndRenderTodos();
+        } catch (err) {
+          alert(ERROR_MESSAGES.update);
+        }
+      }
+
+      async function handleDeleteTodo(id) {
+        try {
+          await apiService.deleteTodo(id);
+          await fetchAndRenderTodos();
+        } catch (err) {
+          alert(ERROR_MESSAGES.delete);
+        }
+      }
+
+      async function fetchAndRenderTodos() {
+        try {
+          const todos = await apiService.getTodos();
+          renderTodos(todos);
+        } catch (err) {
+          alert(ERROR_MESSAGES.fetch);
+        }
+      }
+
+      ELEMENTS.form.addEventListener("submit", handleAddTodo);
+      fetchAndRenderTodos();
+    </script>
+  </body>
+</html>
