@@ -19,9 +19,10 @@ const http = {
 
     let res = await fetch(BASE_URL + cfg.url, cfg);
 
-    // Chạy các response middleware
+    // Chạy các response middleware tuần tự
     for (const mw of this.resMiddleware) {
-      res = (await mw(res, cfg)) || res;
+      res = await mw(res, cfg);
+      if (res === null) return null;
     }
 
     return res;
@@ -40,40 +41,48 @@ const http = {
   },
 };
 
-// Middleware REQ: 1. Thêm access_token vào header
+// Middleware REQ: Thêm access_token vào header
 http.middleware.req((cfg) => {
   cfg.headers = {
     ...cfg.headers,
     Authorization: `Bearer ${localStorage.getItem("access")}`,
   };
-
   return cfg;
 });
 
-// Middleware RES: 1. xử lý khi token hết hạn (401)
+// Middleware RES: Nếu bị 401, làm mới token và gọi lại request ban đầu
 http.middleware.res(async (res, { url, ...opts }) => {
-  if (res.status === 401) {
-    try {
-      const { access, refresh } = await http.post("/login/get_new_token/", {
-        refresh: localStorage.getItem("refresh"),
-      });
+  if (res.status !== 401) return res;
 
-      // Lưu token mới
-      localStorage.setItem("access", access);
-      localStorage.setItem("refresh", refresh);
+  try {
+    // Gọi API để lấy token mới
+    const { access, refresh } = await http.post("/login/get_new_token/", {
+      refresh: localStorage.getItem("refresh"),
+    });
 
-      // Gọi lại request ban đầu
-      return await http.fetch(url, opts);
-    } catch (error) {
-      // Nếu không lấy được token mới, đăng xuất người dùng
-      localStorage.removeItem("access");
-      localStorage.removeItem("refresh");
-      window.location.href = "./login.html";
-    }
+    // Lưu token mới vào localStorage
+    localStorage.setItem("access", access);
+    localStorage.setItem("refresh", refresh);
+
+    // Cập nhật token mới vào headers và gọi lại request ban đầu
+    opts.headers = {
+      ...opts.headers,
+      Authorization: `Bearer ${access}`,
+    };
+
+    // Gọi lại request ban đầu với token mới
+    return await fetch(BASE_URL + url, opts);
+
+    // Đăng xuất nếu refresh token không được
+  } catch (error) {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    window.location.href = "./login.html";
+    return null;
   }
 });
 
-// Middleware RES: 2. parse JSON response
+// Middleware RES: parse JSON và throw nếu lỗi
 http.middleware.res(async (res) => {
   const data = res instanceof Response ? await res.json() : res;
 
