@@ -17,7 +17,7 @@ const http = {
       cfg = mw(cfg) || cfg;
     }
 
-    let res = await fetch(url, cfg);
+    let res = await fetch(cfg.url, cfg);
 
     // Chạy các response middleware tuần tự
     for (const mw of this.resMiddleware) {
