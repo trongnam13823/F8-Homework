@@ -65,6 +65,7 @@ http.middleware.res(async (res, { url, opts }) => {
       // Gọi lại request ban đầu
       return await http.fetch(url, opts);
     } catch (error) {
+      // Nếu không lấy được token mới, đăng xuất người dùng
       localStorage.removeItem("access");
       localStorage.removeItem("refresh");
       window.location.href = "./login.html";
