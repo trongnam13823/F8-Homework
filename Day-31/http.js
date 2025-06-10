@@ -51,7 +51,7 @@ http.middleware.req((cfg) => {
 });
 
 // Middleware RES: 1. xử lý khi token hết hạn (401)
-http.middleware.res(async (res, { url, opts }) => {
+http.middleware.res(async (res, cfg) => {
   if (res.status === 401) {
     try {
       const { access, refresh } = await http.post("/login/get_new_token/", {
@@ -63,7 +63,7 @@ http.middleware.res(async (res, { url, opts }) => {
       localStorage.setItem("refresh", refresh);
 
       // Gọi lại request ban đầu
-      return await http.fetch(url, opts);
+      return await http.fetch(cfg.url, cfg);
     } catch (error) {
       // Nếu không lấy được token mới, đăng xuất người dùng
       localStorage.removeItem("access");
