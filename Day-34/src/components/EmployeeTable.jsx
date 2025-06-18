@@ -29,7 +29,7 @@ export default function EmployeeTable({ employees, onEdit, onDelete }) {
                             <TableCell>{e.address}</TableCell>
                             <TableCell sx={{ display: "flex", gap: 2 }}>
                                 <EditIcon
-                                    color="primary  "
+                                    color="primary"
                                     sx={{ fontSize: 28, cursor: "pointer" }}
                                     onClick={() => onEdit(e)}
                                 />
