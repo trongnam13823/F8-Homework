@@ -6,7 +6,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import EditIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import PropTypes from "prop-types";
 
 export default function EmployeeTable({ employees, onEdit, onDelete }) {
     return (

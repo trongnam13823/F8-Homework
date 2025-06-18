@@ -1,14 +1,6 @@
 import { useState } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import EditIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { employees as initEmployees } from "./data.js";
 import EmployeeDialog from "./components/EmployeeDialog";
 import EmployeeDeleteDialog from "./components/EmployeeDeleteDialog";
