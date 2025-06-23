@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Complete React project",
+      "completed": false
+    },
+    {
+      "id": "2",
+      "title": "Buy groceries",
+      "completed": true
+    },
+    {
+      "id": "3",
+      "title": "Schedule doctor appointment",
+      "completed": false
+    },
+    {
+      "id": "4",
+      "title": "Read documentation",
+      "completed": false
+    },
+    {
+      "id": "5",
+      "title": "Exercise for 30 minutes",
+      "completed": true
+    }
+  ]
+}
