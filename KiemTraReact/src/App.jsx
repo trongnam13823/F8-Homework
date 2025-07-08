@@ -139,7 +139,12 @@ export default function App() {
                     />
                 )}
 
-                <Snackbar open={snackbar.open} autoHideDuration={3000} onClose={handleCloseSnackbar}>
+                <Snackbar
+                    open={snackbar.open}
+                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                    autoHideDuration={3000}
+                    onClose={handleCloseSnackbar}
+                >
                     <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%" }}>
                         {snackbar.message}
                     </Alert>
