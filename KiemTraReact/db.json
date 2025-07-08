@@ -1,0 +1,38 @@
+{
+  "categories": [
+    {
+      "id": "abcc",
+      "name": "Quần áo"
+    },
+    {
+      "id": "xyzz",
+      "name": "Điện thoại"
+    }
+  ],
+  "products": [
+    {
+      "name": "Iphone 11",
+      "categoryId": "xyzz",
+      "orderNum": 35,
+      "id": "b612"
+    },
+    {
+      "id": "0ec4",
+      "name": "Áo thun",
+      "categoryId": "abcc",
+      "orderNum": 45
+    },
+    {
+      "id": "a6ea",
+      "name": "Quần đùi",
+      "categoryId": "abcc",
+      "orderNum": 56
+    },
+    {
+      "id": "3084",
+      "name": "SamSung note 10",
+      "categoryId": "xyzz",
+      "orderNum": 34
+    }
+  ]
+}
