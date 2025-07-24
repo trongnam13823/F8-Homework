@@ -9,7 +9,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarHeader
+  SidebarHeader,
+  useSidebar
 } from '@/components/ui/sidebar'
 import { LayoutGrid, TrophyIcon, Users } from 'lucide-react'
 import Logo from '@/components/Logo'
@@ -37,7 +38,7 @@ export function Sidebar() {
   const pathname = usePathname()
   const match = pathname.match(/^\/class\/([^/]+)(?:\/([^/]+))?/)
   const [, classId, subPath] = match || []
-
+  const { setOpenMobile } = useSidebar()
   return (
     <SidebarUI variant='sidebar' className='top-[var(--navbarHeight)]'>
       <SidebarContent className='bg-white'>
@@ -57,7 +58,11 @@ export function Sidebar() {
                       isActive={isActive}
                       className='data-[active=true]:bg-primary/10 data-[active=true]:text-primary'
                     >
-                      <Link href={`/class/${classId}/${item.path}`} className='text-lg! h-full'>
+                      <Link
+                        href={`/class/${classId}/${item.path}`}
+                        className='text-lg! h-full'
+                        onClick={() => setOpenMobile(false)}
+                      >
                         <item.icon className='size-6!' />
                         <span className='font-medium'>{item.title}</span>
                       </Link>

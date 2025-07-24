@@ -10,7 +10,7 @@ export default function Exam() {
   return (
     <div className='space-y-8'>
       <div className='w-full flex items-center justify-between gap-4 flex-wrap'>
-        <div className='relative min-w-96 md:flex-none flex-1'>
+        <div className='relative md:min-w-96 md:flex-none flex-1'>
           <Search size={20} className='absolute left-3 top-1/2 -translate-y-1/2' />
           <Input type='search' placeholder='Tìm kiếm' className='h-10 w-full px-4 pl-11 md:text-base' />
         </div>
