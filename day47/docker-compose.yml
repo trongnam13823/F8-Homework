@@ -1,0 +1,31 @@
+services:
+    postgres:
+        image: postgres:17
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        networks:
+            - day47
+
+    pgadmin:
+        image: dpage/pgadmin4:9
+        environment:
+            PGADMIN_DEFAULT_EMAIL: trantrongnam138@gmail.com
+            PGADMIN_DEFAULT_PASSWORD: matkhau.138
+        ports:
+            - "8080:80"
+        depends_on:
+            - postgres
+        networks:
+            - day47
+
+volumes:
+    pgdata:
+
+networks:
+    day47:
+        driver: bridge
