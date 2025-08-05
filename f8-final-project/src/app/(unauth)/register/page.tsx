@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormItem, FormControl, FormMessage, FormField } from '@/components/ui/form'
-import { registerSchema } from '@/schemas/users.schema'
+import { registerSchema, Role, Status } from '@/schemas/users.schema'
 import usersApi from '@/apis/users.api'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
@@ -31,8 +31,8 @@ export default function RegisterPage() {
       email: '',
       password: '',
       confirmPassword: '',
-      status: 'confirming',
-      role: 'student'
+      status: Status.Confirming,
+      role: Role.Student
     }
   })
 

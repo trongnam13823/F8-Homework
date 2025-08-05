@@ -1,8 +1,11 @@
 import Logo from '@/components/Logo'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { cookies } from 'next/headers'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const cookieStore = await cookies()
+
   return (
     <div className=' grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20'>
       <main className='flex flex-col gap-[32px] row-start-2 items-start'>
@@ -17,12 +20,20 @@ export default function HomePage() {
         </ul>
 
         <div className='flex gap-4 items-center'>
-          <Button asChild>
-            <Link href='/login'>Đăng nhập</Link>
-          </Button>
-          <Button asChild variant='outline'>
-            <Link href='/register'>Đăng kí</Link>
-          </Button>
+          {cookieStore.get('refresh') ? (
+            <Button asChild>
+              <Link href='/classes'>Vào lớp</Link>
+            </Button>
+          ) : (
+            <>
+              <Button asChild>
+                <Link href='/login'>Đăng nhập</Link>
+              </Button>
+              <Button asChild variant='outline'>
+                <Link href='/register'>Đăng kí</Link>
+              </Button>
+            </>
+          )}
         </div>
       </main>
     </div>

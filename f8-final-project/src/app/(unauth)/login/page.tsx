@@ -16,13 +16,11 @@ import { loginSchema } from '@/schemas/users.schema'
 import usersApi from '@/apis/users.api'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
-import { useUserStore } from '@/store/useUser.store'
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
 
 export default function LoginPage() {
   const [isShowPassword, setIsShowPassword] = useState(true)
-  const { setToken } = useUserStore()
   const router = useRouter()
 
   const onShowPassword = () => {
