@@ -1,3 +1,5 @@
+'use client'
+
 import ClassCard from './ClassCard'
 import { Plus, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
@@ -14,6 +16,8 @@ import {
 } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
 import RequiredMark from '@/components/RequiredMark'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import classApi from '@/apis/class.api'
 
 const mockClasses = [
   { id: 1, name: 'Lớp 12A1', studentCount: 42, code: 'CL123456' },
@@ -31,10 +35,18 @@ const mockClasses = [
 ]
 
 export default function ClassesPage() {
+  const { data, isFetched } = useQuery({
+    queryKey: ['class'],
+    queryFn: () => classApi.get(),
+    refetchOnWindowFocus: false,
+    placeholderData: keepPreviousData,
+    gcTime: 0
+  })
+
   return (
     <div className='md:px-8 px-4 py-8'>
       <div className='flex items-center justify-between gap-5 flex-wrap'>
-        <h1 className='font-bold text-2xl'>Danh sách lớp học</h1>
+        <h1 className='font-bold text-2xl'>Danh sách lớp học {isFetched && JSON.stringify(data?.data)}</h1>
         <div className='flex gap-4 flex-wrap md:w-fit w-full'>
           <div className='relative min-w-80 md:flex-none flex-1'>
             <Search size={20} className='absolute left-3 top-1/2 -translate-y-1/2' />

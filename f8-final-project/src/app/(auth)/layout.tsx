@@ -1,9 +1,12 @@
 import { ReactNode } from 'react'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
-export default function AuthLayout({ children }: Readonly<{ children: ReactNode }>) {
-  return (
-    <div className='w-screen h-screen flex items-center justify-center bg-auth'>
-      <div className='shadow rounded overflow-hidden w-fit m-4'>{children}</div>
-    </div>
-  )
+export default async function AuthLayout({ children }: { children: ReactNode }) {
+  const cookieStore = await cookies()
+  const refresh = cookieStore.get('refresh')?.value
+
+  if (!refresh) redirect('/login')
+
+  return children
 }

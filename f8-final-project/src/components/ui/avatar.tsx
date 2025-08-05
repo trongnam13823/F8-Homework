@@ -21,13 +21,25 @@ function AvatarImage({ className, ...props }: React.ComponentProps<typeof Avatar
   )
 }
 
-function AvatarFallback({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+function AvatarFallback({ className, children, ...props }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+  let fallbackText = '?'
+
+  if (typeof children === 'string' && children.trim()) {
+    fallbackText = children
+      .split(' ')
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase()
+  }
+
   return (
     <AvatarPrimitive.Fallback
       data-slot='avatar-fallback'
       className={cn('bg-muted flex size-full items-center justify-center rounded-full', className)}
       {...props}
-    />
+    >
+      {fallbackText}
+    </AvatarPrimitive.Fallback>
   )
 }
 
