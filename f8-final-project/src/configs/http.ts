@@ -37,4 +37,15 @@ http.interceptors.request.use(
   }
 )
 
+http.interceptors.response.use(
+  // Do something with response data
+  (response) => {
+    return response
+  },
+  // Do something with response error
+  async (error) => {
+    return Promise.reject(error.response.data)
+  }
+)
+
 export default http

@@ -16,12 +16,12 @@ import { loginSchema } from '@/schemas/users.schema'
 import usersApi from '@/apis/users.api'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
-import Cookies from 'js-cookie'
-import { jwtDecode } from 'jwt-decode'
+import { useUserStore } from '@/store/useUser.store'
 
 export default function LoginPage() {
   const [isShowPassword, setIsShowPassword] = useState(true)
   const router = useRouter()
+  const { setAccessDecoded } = useUserStore()
 
   const onShowPassword = () => {
     setIsShowPassword(!isShowPassword)
@@ -38,11 +38,7 @@ export default function LoginPage() {
   const loginAPI = useMutation({
     mutationFn: usersApi.login,
     onSuccess: (res) => {
-      const { access, refresh } = res.data
-      const accessDecoded = jwtDecode(access)
-
-      Cookies.set('access', access, { expires: new Date(accessDecoded.exp! * 1000) })
-      Cookies.set('refresh', refresh, { expires: 9999 })
+      setAccessDecoded(res.data.access, res.data.refresh)
 
       router.push('/classes')
     },

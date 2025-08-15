@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { jwtDecode } from 'jwt-decode'
 import { Role } from '@/schemas/users.schema'
+import Cookies from 'js-cookie'
 
 export interface AccessDecoded {
   id: number
@@ -16,13 +17,17 @@ export interface AccessDecoded {
 
 interface UserState {
   accessDecoded: AccessDecoded | null
-  setAccessDecoded: (access: string | undefined) => void
+  setAccessDecoded: (access: string, refresh: string) => void
 }
 
 export const useUserStore = create<UserState>()((set) => ({
   accessDecoded: null,
-  setAccessDecoded: (access) => {
-    const decoded = access ? jwtDecode<AccessDecoded>(access) : null
+  setAccessDecoded: (access, refresh) => {
+    const decoded = jwtDecode<AccessDecoded>(access)
+
+    Cookies.set('access', access, { expires: new Date(decoded.exp! * 1000) })
+    Cookies.set('refresh', refresh, { expires: 9999 })
+
     set({ accessDecoded: decoded })
   }
 }))

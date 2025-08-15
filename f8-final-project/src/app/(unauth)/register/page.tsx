@@ -16,6 +16,7 @@ import usersApi from '@/apis/users.api'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
+import RequiredMark from '@/components/RequiredMark'
 
 export default function RegisterPage() {
   const [isShowPassword, setIsShowPassword] = useState(true)
@@ -32,7 +33,7 @@ export default function RegisterPage() {
       password: '',
       confirmPassword: '',
       status: Status.Confirming,
-      role: Role.Student
+      role: Role.Teacher
     }
   })
 
@@ -66,7 +67,7 @@ export default function RegisterPage() {
             render={({ field }) => (
               <FormItem>
                 <Label htmlFor='name' className='text-base'>
-                  Tên của bạn
+                  Tên của bạn <RequiredMark />
                 </Label>
                 <FormControl>
                   <Input
@@ -87,7 +88,7 @@ export default function RegisterPage() {
             render={({ field }) => (
               <FormItem>
                 <Label htmlFor='email' className='text-base'>
-                  Địa chỉ email
+                  Địa chỉ email <RequiredMark />
                 </Label>
                 <FormControl>
                   <Input
@@ -109,7 +110,7 @@ export default function RegisterPage() {
             render={({ field }) => (
               <FormItem>
                 <Label htmlFor='password' className='text-base'>
-                  Mật khẩu
+                  Mật khẩu <RequiredMark />
                 </Label>
                 <FormControl>
                   <div className='relative'>
@@ -140,7 +141,7 @@ export default function RegisterPage() {
             render={({ field }) => (
               <FormItem>
                 <Label htmlFor='confirmPassword' className='text-base'>
-                  Nhập lại mật khẩu
+                  Nhập lại mật khẩu <RequiredMark />
                 </Label>
                 <FormControl>
                   <Input

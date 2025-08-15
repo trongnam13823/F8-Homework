@@ -9,7 +9,7 @@ export default function NavbarLayout({ children }: { children: ReactNode }) {
   const { setAccessDecoded } = useUserStore()
 
   useEffect(() => {
-    setAccessDecoded(Cookies.get('access')!)
+    setAccessDecoded(Cookies.get('access')!, Cookies.get('refresh')!)
   }, [setAccessDecoded])
 
   return (
