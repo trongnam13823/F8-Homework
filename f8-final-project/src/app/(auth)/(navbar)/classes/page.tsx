@@ -54,7 +54,7 @@ export default function ClassesPage() {
     }
   }, [open])
 
-  const { data, isFetched, refetch } = useQuery({
+  const { data, isFetched, isLoading, refetch } = useQuery({
     queryKey: ['class'],
     queryFn: () => classApi.get(),
     refetchOnWindowFocus: false,
@@ -176,11 +176,12 @@ export default function ClassesPage() {
       </div>
 
       <div className='mt-8 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-        {isFetched && filteredClasses.length > 0 ? (
+        {filteredClasses.length > 0 &&
           filteredClasses.map(({ id, name, users }) => (
             <ClassCard key={id} id={id} name={name} studentCount={users.length} code={id.toString()} />
-          ))
-        ) : (
+          ))}
+
+        {!isLoading && isFetched && filteredClasses.length === 0 && (
           <p className='col-span-full text-center text-gray-500'>Không tìm thấy lớp học nào.</p>
         )}
       </div>
