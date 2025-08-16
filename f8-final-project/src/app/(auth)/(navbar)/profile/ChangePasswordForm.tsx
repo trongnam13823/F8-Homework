@@ -14,8 +14,12 @@ import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import z from 'zod'
+import { useState } from 'react'
+import RequiredMark from '@/components/RequiredMark'
+import { Eye, EyeOff } from 'lucide-react'
 
 export default function ChangePasswordForm() {
+  const [isShowPassword, setIsShowPassword] = useState(true)
   const { accessDecoded } = useUserStore()
   const router = useRouter()
 
@@ -53,6 +57,10 @@ export default function ChangePasswordForm() {
     }
   }
 
+  const onShowPassword = () => {
+    setIsShowPassword(!isShowPassword)
+  }
+
   return (
     <>
       <h2 className='font-bold text-2xl mb-4'>Đổi mật khẩu</h2>
@@ -66,15 +74,26 @@ export default function ChangePasswordForm() {
               name='old_password'
               render={({ field }) => (
                 <FormItem>
-                  <Label htmlFor='old_password'>Mật khẩu cũ</Label>
+                  <Label htmlFor='old_password'>
+                    Mật khẩu cũ <RequiredMark />{' '}
+                  </Label>
                   <FormControl>
-                    <Input
-                      {...field}
-                      id='old_password'
-                      type='password'
-                      placeholder='Nhập mật khẩu cũ'
-                      className='border-primary h-10 px-4 md:text-base'
-                    />
+                    <div className='relative'>
+                      <Input
+                        id='old_password'
+                        type={isShowPassword ? 'password' : 'text'}
+                        className='border-primary h-12 px-4 pr-14 md:text-base'
+                        placeholder='Nhập mật khẩu cũ'
+                        {...field}
+                      />
+                      <button
+                        type='button'
+                        className='absolute right-0 top-1/2 -translate-y-1/2 h-12 px-4 cursor-pointer'
+                        onClick={onShowPassword}
+                      >
+                        {isShowPassword ? <EyeOff className='size-6' /> : <Eye className='size-6' />}
+                      </button>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -92,7 +111,7 @@ export default function ChangePasswordForm() {
                     <Input
                       {...field}
                       id='new_password'
-                      type='password'
+                      type={isShowPassword ? 'password' : 'text'}
                       placeholder='Nhập mật khẩu mới'
                       className='border-primary h-10 px-4 md:text-base'
                     />
@@ -113,7 +132,7 @@ export default function ChangePasswordForm() {
                     <Input
                       {...field}
                       id='confirmPassword'
-                      type='password'
+                      type={isShowPassword ? 'password' : 'text'}
                       placeholder='Nhập lại mật khẩu mới'
                       className='border-primary h-10 px-4 md:text-base'
                     />

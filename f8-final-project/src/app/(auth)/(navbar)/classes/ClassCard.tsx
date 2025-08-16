@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { CopyIcon, DoorOpen } from 'lucide-react'
 import Link from 'next/link'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { memo } from 'react'
 
 interface ClassCardProps {
   id: number
@@ -11,7 +12,7 @@ interface ClassCardProps {
   code: string
 }
 
-export default function ClassCard({ id, name, studentCount, code }: ClassCardProps) {
+export default memo(function ClassCard({ id, name, studentCount, code }: ClassCardProps) {
   return (
     <div>
       <div className='p-4 bg-primary/80 text-white shadow rounded-xl'>
@@ -52,4 +53,4 @@ export default function ClassCard({ id, name, studentCount, code }: ClassCardPro
       </div>
     </div>
   )
-}
+})
